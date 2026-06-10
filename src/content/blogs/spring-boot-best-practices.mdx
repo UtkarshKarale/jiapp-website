@@ -1,0 +1,374 @@
+---
+title: "Spring Boot Best Practices for Production-Ready APIs"
+description: "Battle-tested patterns and practices for building robust, maintainable, and performant Spring Boot APIs — from project structure to deployment."
+author: "Jigar Innovations"
+publishDate: "2025-04-22"
+tags: ["spring-boot", "java", "kotlin", "backend", "api", "architecture"]
+category: "Backend"
+coverImage: "/images/blog/spring-boot.svg"
+featured: false
+readingTime: 18
+draft: false
+---
+
+After shipping multiple production Spring Boot services — from civic-tech platforms to fintech APIs — I've accumulated a set of patterns that consistently lead to maintainable, performant, and observable systems. This post is a distillation of those hard-won lessons.
+
+I'll be using **Kotlin** examples throughout, as it's my preferred language for Spring Boot development. The patterns apply equally to Java.
+
+## Project Structure: Beyond the Default
+
+The default Spring Boot structure (`controller`, `service`, `repository`) falls apart fast as complexity grows. I use a **feature-first, hexagonal-inspired** layout:
+
+```
+src/main/kotlin/com/jigarinnovations/app/
+  ├── config/                 # Spring configuration classes
+  ├── shared/                 # Cross-cutting concerns
+  │   ├── exception/          # Global exception handling
+  │   ├── security/           # Security configuration
+  │   └── middleware/         # Request/response filters
+  ├── features/
+  │   ├── user/
+  │   │   ├── api/            # Controllers, DTOs
+  │   │   ├── domain/         # Entities, value objects
+  │   │   ├── application/    # Services, use cases
+  │   │   └── infrastructure/ # Repositories, external calls
+  │   └── payments/
+  │       ├── api/
+  │       ├── domain/
+  │       ├── application/
+  │       └── infrastructure/
+  └── Application.kt
+```
+
+This structure co-locates related code, makes feature discovery obvious, and enforces clear dependency direction.
+
+## Configuration: Environment-First Approach
+
+Never hardcode environment-specific values. Use Spring profiles and externalized configuration:
+
+```kotlin
+// src/main/kotlin/config/AppProperties.kt
+@ConfigurationProperties(prefix = "app")
+@ConstructorBinding
+data class AppProperties(
+    val jwt: JwtProperties,
+    val cors: CorsProperties,
+    val email: EmailProperties,
+)
+
+data class JwtProperties(
+    val secret: String,
+    val expirationMs: Long = 86_400_000, // 24h
+    val refreshExpirationMs: Long = 604_800_000, // 7 days
+)
+```
+
+```yaml
+# application.yml
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000
+  cors:
+    allowed-origins:
+      - ${FRONTEND_URL:http://localhost:3000}
+```
+
+Always validate configuration at startup — fail fast rather than fail mysteriously at runtime:
+
+```kotlin
+@Validated
+@ConfigurationProperties(prefix = "app")
+data class AppProperties(
+    @field:NotBlank val databaseUrl: String,
+    @field:Min(1) @field:Max(100) val maxConnections: Int = 10,
+)
+```
+
+## Exception Handling: Centralized and Consistent
+
+A global exception handler ensures consistent error responses across your entire API:
+
+```kotlin
+@RestControllerAdvice
+class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException::class)
+    fun handleNotFound(ex: ResourceNotFoundException): ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(ErrorResponse(
+                code = "RESOURCE_NOT_FOUND",
+                message = ex.message ?: "Resource not found",
+                timestamp = Instant.now()
+            ))
+    }
+
+    @ExceptionHandler(ValidationException::class)
+    fun handleValidation(ex: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
+        val errors = ex.bindingResult.fieldErrors.map { error ->
+            FieldError(field = error.field, message = error.defaultMessage ?: "Invalid value")
+        }
+        return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body(ValidationErrorResponse(
+                code = "VALIDATION_FAILED",
+                errors = errors,
+                timestamp = Instant.now()
+            ))
+    }
+
+    @ExceptionHandler(Exception::class)
+    fun handleGeneral(ex: Exception): ResponseEntity<ErrorResponse> {
+        logger.error("Unhandled exception", ex)
+        return ResponseEntity
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(ErrorResponse(
+                code = "INTERNAL_ERROR",
+                message = "An unexpected error occurred",
+                timestamp = Instant.now()
+            ))
+    }
+}
+```
+
+Define a sealed hierarchy for domain exceptions:
+
+```kotlin
+sealed class AppException(message: String) : RuntimeException(message)
+
+class ResourceNotFoundException(resource: String, id: Any) :
+    AppException("$resource with id '$id' not found")
+
+class DuplicateResourceException(resource: String, field: String, value: Any) :
+    AppException("$resource with $field '$value' already exists")
+
+class UnauthorizedException(message: String = "Unauthorized") :
+    AppException(message)
+```
+
+## Database: JPA Done Right
+
+### Use Projections for Read Operations
+
+Fetching full entities for read-only endpoints is wasteful. Use projections:
+
+```kotlin
+interface UserSummary {
+    val id: Long
+    val email: String
+    val displayName: String
+    val createdAt: Instant
+}
+
+@Repository
+interface UserRepository : JpaRepository<User, Long> {
+    fun findAllByActiveTrue(pageable: Pageable): Page<UserSummary>
+
+    @Query("SELECT u.id as id, u.email as email, u.displayName as displayName, u.createdAt as createdAt FROM User u WHERE u.id = :id")
+    fun findSummaryById(id: Long): UserSummary?
+}
+```
+
+### Pagination and Filtering
+
+Always paginate list endpoints. Use a consistent query param convention:
+
+```kotlin
+@GetMapping("/users")
+fun listUsers(
+    @RequestParam(defaultValue = "0") page: Int,
+    @RequestParam(defaultValue = "20") size: Int,
+    @RequestParam(defaultValue = "createdAt") sortBy: String,
+    @RequestParam(defaultValue = "desc") order: String,
+): ResponseEntity<PageResponse<UserSummaryDto>> {
+    val sort = if (order == "asc") Sort.by(sortBy).ascending() else Sort.by(sortBy).descending()
+    val pageable = PageRequest.of(page, size.coerceIn(1, 100), sort)
+    val result = userService.findAll(pageable)
+    return ResponseEntity.ok(PageResponse.from(result))
+}
+```
+
+## Security: Defense in Depth
+
+### JWT with Refresh Token Rotation
+
+```kotlin
+@Service
+class TokenService(private val properties: AppProperties) {
+
+    fun generateAccessToken(userId: Long, email: String): String =
+        Jwts.builder()
+            .subject(userId.toString())
+            .claim("email", email)
+            .issuedAt(Date())
+            .expiration(Date(System.currentTimeMillis() + properties.jwt.expirationMs))
+            .signWith(getSigningKey())
+            .compact()
+
+    fun generateRefreshToken(userId: Long): String =
+        Jwts.builder()
+            .subject(userId.toString())
+            .claim("type", "refresh")
+            .issuedAt(Date())
+            .expiration(Date(System.currentTimeMillis() + properties.jwt.refreshExpirationMs))
+            .signWith(getSigningKey())
+            .compact()
+
+    private fun getSigningKey() =
+        Keys.hmacShaKeyFor(properties.jwt.secret.toByteArray())
+}
+```
+
+### Rate Limiting with Bucket4j
+
+```kotlin
+@Component
+class RateLimitFilter : OncePerRequestFilter() {
+    private val buckets = ConcurrentHashMap<String, Bucket>()
+
+    override fun doFilterInternal(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        chain: FilterChain
+    ) {
+        val clientIp = request.remoteAddr
+        val bucket = buckets.computeIfAbsent(clientIp) { createBucket() }
+
+        if (bucket.tryConsume(1)) {
+            chain.doFilter(request, response)
+        } else {
+            response.status = 429
+            response.writer.write("""{"code":"RATE_LIMITED","message":"Too many requests"}""")
+        }
+    }
+
+    private fun createBucket(): Bucket = Bucket.builder()
+        .addLimit(Bandwidth.classic(100, Refill.greedy(100, Duration.ofMinutes(1))))
+        .build()
+}
+```
+
+## Observability: You Need This in Production
+
+### Structured Logging
+
+```kotlin
+// Use SLF4J with Logback structured JSON output in production
+private val logger = LoggerFactory.getLogger(UserService::class.java)
+
+fun createUser(request: CreateUserRequest): User {
+    logger.info("Creating user", kv("email", request.email), kv("source", request.source))
+    // ...
+}
+```
+
+### Custom Metrics with Micrometer
+
+```kotlin
+@Service
+class PaymentService(private val meterRegistry: MeterRegistry) {
+
+    private val paymentCounter = meterRegistry.counter("payments.processed")
+    private val paymentAmount = meterRegistry.summary("payments.amount")
+
+    fun processPayment(request: PaymentRequest): Payment {
+        val payment = // ... process payment
+        paymentCounter.increment()
+        paymentAmount.record(payment.amount.toDouble())
+        return payment
+    }
+}
+```
+
+### Health Checks
+
+```kotlin
+@Component
+class DatabaseHealthIndicator(private val dataSource: DataSource) : HealthIndicator {
+    override fun health(): Health {
+        return try {
+            dataSource.connection.use { conn ->
+                conn.createStatement().executeQuery("SELECT 1")
+            }
+            Health.up().withDetail("database", "PostgreSQL").build()
+        } catch (e: Exception) {
+            Health.down(e).build()
+        }
+    }
+}
+```
+
+## Testing: The Pyramid in Practice
+
+```kotlin
+// Unit test — fast, isolated
+@Test
+fun `should calculate total price with discount`() {
+    val order = Order(items = listOf(OrderItem(price = 100.0, quantity = 2)))
+    val discountedTotal = orderService.calculateTotal(order, discountPercent = 10)
+    assertThat(discountedTotal).isEqualTo(180.0)
+}
+
+// Integration test — with real database
+@SpringBootTest
+@Transactional
+class UserRepositoryTest(@Autowired private val repository: UserRepository) {
+
+    @Test
+    fun `should find user by email`() {
+        val user = repository.save(User(email = "test@example.com", name = "Test"))
+        val found = repository.findByEmail("test@example.com")
+        assertThat(found).isNotNull
+        assertThat(found!!.name).isEqualTo("Test")
+    }
+}
+
+// API test — full stack
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class UserApiTest(@Autowired val restTemplate: TestRestTemplate) {
+
+    @Test
+    fun `should return 401 for unauthenticated request`() {
+        val response = restTemplate.getForEntity("/api/v1/users/me", String::class.java)
+        assertThat(response.statusCode).isEqualTo(HttpStatus.UNAUTHORIZED)
+    }
+}
+```
+
+## Deployment: Containerization Done Right
+
+```dockerfile
+# Multi-stage build for minimal image size
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /app
+COPY gradlew build.gradle.kts settings.gradle.kts ./
+COPY gradle/ gradle/
+RUN ./gradlew dependencies --no-daemon
+COPY src/ src/
+RUN ./gradlew bootJar --no-daemon
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+COPY --from=builder /app/build/libs/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
+```
+
+## Key Takeaways
+
+1. **Structure by feature**, not by layer — scales better
+2. **Validate configuration at startup** — fail fast
+3. **Centralize exception handling** — consistent API contracts
+4. **Use projections for reads** — significant performance gain
+5. **Always paginate list endpoints** — protect your database
+6. **Add observability from day one** — you'll thank yourself later
+7. **Write tests at all levels** — but don't over-test trivial code
+
+Spring Boot remains my backend of choice for serious, production-grade APIs. The ecosystem is mature, the community is vast, and Kotlin makes it genuinely pleasant to work with.
+
+---
+
+*Questions about Spring Boot architecture? Reach out via the contact page or open a discussion on GitHub.*

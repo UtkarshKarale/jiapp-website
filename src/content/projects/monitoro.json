@@ -1,0 +1,26 @@
+{
+  "title": "Monitoro",
+  "slug": "monitoro",
+  "description": "A lightweight, developer-first uptime monitoring service with Telegram bot alerts, real-time status pages, and incident management.",
+  "longDescription": "Monitoro is the no-nonsense uptime monitoring tool built for indie developers and small teams. Set up monitoring in under 60 seconds — no dashboards to configure, no complex onboarding. Get instant Telegram alerts when your services go down, view historical uptime data, and share beautiful status pages with your users.",
+  "category": "ji-apps",
+  "coverImage": "/images/projects/monitoro-cover.svg",
+  "galleryImages": [],
+  "technologies": ["Spring Boot", "Kotlin", "PostgreSQL", "Telegram Bot API", "Docker", "Cloudflare"],
+  "features": [
+    "HTTP, TCP, and DNS monitoring",
+    "Instant Telegram notifications",
+    "Public status pages with custom domains",
+    "Multi-region checks from 5 global locations",
+    "SSL certificate expiry monitoring",
+    "Incident timeline and postmortem tools",
+    "API for programmatic monitor management"
+  ],
+  "liveUrl": "https://monitoro.dev",
+  "status": "live",
+  "featured": false,
+  "createdDate": "2024-01-10",
+  "stats": {
+    "users": "800+"
+  }
+}

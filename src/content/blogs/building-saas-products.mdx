@@ -1,0 +1,158 @@
+---
+title: "Building SaaS Products as a Solo Developer in India"
+description: "Lessons learned from building and shipping multiple SaaS products — from idea validation to revenue, as an indie developer based in India."
+author: "Jigar Innovations"
+publishDate: "2025-03-10"
+tags: ["saas", "entrepreneurship", "indie-hacker", "product", "startup"]
+category: "Entrepreneurship"
+coverImage: "/images/blog/saas-solo.svg"
+featured: true
+readingTime: 15
+draft: false
+---
+
+Building software products as a solo developer is one of the most challenging and rewarding things you can do. I've been on this journey for two years now — shipping products, learning from failures, and gradually figuring out what works.
+
+This isn't a success story (yet). It's an honest account of the process.
+
+## The Solo Developer Reality
+
+Let me be upfront: building a SaaS alone is **brutally hard**. You're the product manager, designer, frontend developer, backend developer, DevOps engineer, marketer, and customer support agent — all at once.
+
+But it's also the most liberating thing I've ever done. Every decision is yours. Every line of code has your fingerprint. And when something works — even something small — the satisfaction is unlike anything I've felt in a regular job.
+
+## Start with a Problem You Have
+
+Every product I've shipped started with a problem I personally faced:
+
+- **Monitoro** — I couldn't afford Pingdom or StatusPage for my hobby projects
+- **LokSetu** — I watched my family struggle to file municipal complaints with no follow-up
+- **FinanceFlow** — I couldn't find a finance app that worked well for Indian bank accounts
+
+This is the classic "scratch your own itch" advice, and it's classic for a reason. When you're the customer, you know exactly what's missing. You feel the pain viscerally. That emotional connection keeps you going during the hard months.
+
+## The Stack That Works for Me
+
+After experimenting with many combinations, I've settled on a productive stack:
+
+**Frontend:**
+```
+Next.js 15 + TypeScript
+Tailwind CSS
+shadcn/ui for components
+React Query for data fetching
+```
+
+**Backend:**
+```
+Spring Boot (Kotlin)
+PostgreSQL + Prisma (for Next.js projects)
+Redis for caching/sessions
+Docker for containerization
+```
+
+**Infrastructure:**
+```
+Hetzner VPS (€5/month — incredible value)
+Cloudflare for CDN, DNS, and Pages
+GitHub Actions for CI/CD
+```
+
+**Payments:**
+```
+Razorpay (India)
+Stripe (international)
+```
+
+This stack lets me move fast without getting overwhelmed by infrastructure complexity.
+
+## Pricing in India: The Hard Truth
+
+Pricing SaaS for the Indian market is a unique challenge. The purchasing power parity is real — what costs $29/month in the US needs to be ₹499/month or less to find traction here.
+
+My approach:
+- **Free tier** — generous enough to provide real value
+- **Pro tier** — ₹299–499/month for individuals
+- **Team tier** — ₹999–1,999/month for small businesses
+
+I've tried charging in USD to Indian customers. Conversion rates are much lower. INR pricing with clear value proposition converts significantly better.
+
+## The Build-Measure-Learn Cycle
+
+For FinanceFlow, my initial version took 8 weeks to build. Here's what happened:
+
+1. **Week 1-8:** Built the "full" product with 40+ features
+2. **Week 9:** Launched to a waitlist of 200 people
+3. **Week 10:** Realized users only cared about 4 of those features
+4. **Week 11-12:** Stripped everything else, made those 4 features excellent
+5. **Week 13:** Conversion rate tripled
+
+**The lesson:** Ship the smallest version that solves the core problem. You'll discover what actually matters much faster.
+
+## Distribution is the Real Challenge
+
+I've talked to many Indian developers who've built genuinely great products that nobody uses. The product isn't the hard part. Distribution is.
+
+What's worked for me:
+
+**Community participation:**
+- Genuine helpfulness in Discord servers and forums
+- Sharing my building journey on Twitter/X
+- Writing detailed technical posts (like this one)
+
+**Content marketing:**
+- SEO-optimized blog posts that solve real problems
+- YouTube tutorials using my own products as examples
+- Listing on Product Hunt, Uneed, and similar directories
+
+**Direct outreach:**
+- Finding potential users on LinkedIn and offering free trials
+- Joining relevant WhatsApp groups and being genuinely helpful
+
+What hasn't worked: Generic cold emails, paid ads before finding product-market fit.
+
+## Technical Decisions That Saved Me
+
+### Use managed services initially
+
+I used to self-host everything out of principle. Now I use managed Postgres on Supabase for early-stage projects. The time saved is worth more than the cost difference.
+
+### Build a strong API layer from day one
+
+Even if you start monolith, design your API well. It makes it trivial to add a mobile app later without rewriting business logic.
+
+### Invest in observability early
+
+Sentry for error tracking, PostHog for analytics, and structured logs — set these up in week one. Flying blind in production is a nightmare.
+
+## Financial Reality Check
+
+Here's my approximate monthly costs for running three products:
+
+| Service | Cost/month |
+|---------|-----------|
+| Hetzner VPS (2 servers) | €12 |
+| Cloudflare Pro | $20 |
+| Supabase Pro | $25 |
+| Email (Resend) | $20 |
+| Sentry | $0 (hobby) |
+| PostHog | $0 (hobby) |
+| **Total** | **~₹6,500** |
+
+Revenue? I'm profitable on Monitoro alone. LokSetu has a B2G pilot. FinanceFlow is still in beta. The goal for 2025 is ₹50,000/month across all products.
+
+## The Long Game
+
+If I could give one piece of advice to another Indian developer wanting to build products:
+
+**Don't try to build the next unicorn. Build something 100 people love deeply.**
+
+Start small. Solve a real problem. Charge money from day one (even if it's ₹99/month). Talk to users obsessively. Iterate fast.
+
+The indie developer path in India is just getting started. The infrastructure is better than ever, the talent is world-class, and the market is enormous. We just need more builders who are willing to go all in.
+
+I'll keep sharing my journey — the wins, the failures, and everything in between.
+
+---
+
+*Building something? I'd love to hear about it. Connect on [GitHub](https://github.com/jigar-innovations) or drop a message via the contact form.*

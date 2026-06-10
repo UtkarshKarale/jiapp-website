@@ -1,0 +1,65 @@
+---
+---
+
+<section class="ji-section">
+  <div class="ji-container">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 p-8 sm:p-12 lg:p-16 animate-on-scroll">
+      <!-- Background decorations -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-white blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-cyan-400 blur-3xl"></div>
+      </div>
+
+      <!-- Grid overlay -->
+      <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px); background-size: 48px 48px;"></div>
+
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-flex items-center gap-2 ji-badge bg-white/10 text-white/80 border border-white/20 mb-6">
+          <span class="text-base">📬</span>
+          <span class="ji-label">Newsletter</span>
+        </div>
+
+        <h2 class="ji-heading-lg text-white mb-4">
+          Stay in the loop
+        </h2>
+
+        <p class="text-indigo-100 text-lg leading-relaxed mb-8">
+          Get notified when I ship new products, publish technical articles, or share lessons from building software products in India.
+        </p>
+
+        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md">
+          <input
+            type="email"
+            id="newsletter-email"
+            placeholder="your@email.com"
+            required
+            class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 focus:bg-white/15 transition-all text-sm backdrop-blur"
+          />
+          <button
+            type="submit"
+            class="px-6 py-3 rounded-xl bg-white text-indigo-700 font-semibold text-sm hover:bg-indigo-50 transition-colors whitespace-nowrap"
+          >
+            Subscribe Free
+          </button>
+        </form>
+
+        <p class="text-white/40 text-xs mt-4">
+          No spam. Unsubscribe anytime. ~2 emails per month.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('newsletter-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = (document.getElementById('newsletter-email') as HTMLInputElement)?.value;
+    if (email) {
+      // Replace with actual newsletter service integration
+      alert(`Thanks! We'll reach you at ${email}`);
+      (e.target as HTMLFormElement).reset();
+    }
+  });
+</script>

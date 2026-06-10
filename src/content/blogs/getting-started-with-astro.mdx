@@ -1,0 +1,173 @@
+---
+title: "Getting Started with Astro: Build Faster Websites in 2025"
+description: "A comprehensive guide to building modern, performant websites with Astro — from project setup to deploying on Cloudflare Pages."
+author: "Jigar Innovations"
+publishDate: "2025-01-15"
+updatedDate: "2025-02-01"
+tags: ["astro", "javascript", "web-development", "performance", "ssr"]
+category: "Web Development"
+coverImage: "/images/blog/astro-guide.svg"
+featured: true
+readingTime: 12
+draft: false
+---
+
+
+Astro has rapidly become one of the most exciting frameworks in the modern web development ecosystem. With its **islands architecture** and zero-JS-by-default philosophy, it delivers exceptional performance while keeping the developer experience smooth and familiar.
+
+## Why Astro in 2025?
+
+In a world of React Server Components, Next.js App Router complexity, and bloated JavaScript bundles, Astro cuts through the noise with a refreshingly simple proposition:
+
+> **Ship less JavaScript. Render faster. Keep your favourite UI components.**
+
+Here's what makes Astro stand out:
+
+- 🚀 **Zero JS by default** — pages ship as pure HTML unless you opt in
+- 🏝️ **Islands architecture** — hydrate only the components that need interactivity
+- 🔌 **Framework agnostic** — use React, Vue, Svelte, or Solid in the same project
+- 📦 **Content Collections** — type-safe content management built in
+- ⚡ **Vite-powered** — blazing-fast builds and HMR
+
+## Setting Up Your First Astro Project
+
+Getting started is straightforward. Run the following in your terminal:
+
+```bash
+npm create astro@latest my-project
+cd my-project
+npm install
+npm run dev
+```
+
+The interactive CLI will walk you through template selection, TypeScript configuration, and dependency installation.
+
+## Project Structure
+
+A typical Astro project looks like this:
+
+```
+src/
+  components/     # Reusable UI components (.astro, .tsx, .vue)
+  content/        # Content Collections (markdown, MDX, JSON)
+  layouts/        # Page layout wrappers
+  pages/          # File-based routing
+  styles/         # Global CSS
+public/           # Static assets (fonts, images)
+astro.config.mjs  # Astro configuration
+```
+
+## Content Collections: Type-Safe Content Management
+
+One of Astro's most powerful features is Content Collections. Define a schema, and Astro validates all your content at build time.
+
+```typescript
+// src/content/config.ts
+import { defineCollection, z } from 'astro:content';
+
+const blogCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.string(),
+    tags: z.array(z.string()),
+    featured: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog: blogCollection };
+```
+
+Now you get full TypeScript autocompletion and runtime validation — no more typos in frontmatter breaking your build.
+
+## Building an Astro Component
+
+Astro components use a familiar `.astro` syntax with a JavaScript/TypeScript frontmatter section:
+
+```astro
+---
+// Component Script (runs at build time)
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!-- Component Template -->
+<article class="card">
+  <h2>{title}</h2>
+  <p>{description}</p>
+</article>
+
+<style>
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+</style>
+```
+
+## Adding Interactivity with Islands
+
+Need a dropdown menu or an interactive counter? Use an island:
+
+```astro
+---
+import Counter from '../components/Counter.tsx';
+---
+
+<!-- This React component hydrates only when visible in viewport -->
+<Counter client:visible initialCount={0} />
+```
+
+Astro supports multiple hydration strategies:
+- `client:load` — hydrate immediately on page load
+- `client:idle` — hydrate when the browser is idle
+- `client:visible` — hydrate when the component enters the viewport
+- `client:only` — skip SSR, render only on client
+
+## Deploying to Cloudflare Pages
+
+Cloudflare Pages offers a generous free tier and lightning-fast edge deployment. With Astro's static output, deployment is as simple as:
+
+```bash
+# Install Cloudflare adapter (for SSR)
+npx astro add cloudflare
+
+# Or build static output
+npm run build
+# Then drag & drop the dist/ folder to Cloudflare Pages
+```
+
+For automatic deployments, connect your GitHub repo in the Cloudflare dashboard and set the build command to `npm run build` with output directory `dist`.
+
+## Performance Results
+
+After migrating a client's blog from Next.js to Astro:
+
+| Metric | Before (Next.js) | After (Astro) |
+|--------|-----------------|---------------|
+| FCP | 2.4s | 0.8s |
+| LCP | 3.1s | 1.2s |
+| JS Bundle | 187KB | 12KB |
+| Lighthouse | 72 | 98 |
+
+The numbers speak for themselves.
+
+## What's Next?
+
+In the upcoming posts, we'll dive into:
+- **MDX and custom components** for rich blog experiences
+- **Dynamic routes** and pagination
+- **View Transitions API** for page animations
+- **Astro DB** for lightweight data persistence
+
+Astro is my go-to for content-heavy projects in 2025. The developer experience is excellent, the performance is unmatched, and the community is growing fast. Give it a shot — you won't be disappointed.
+
+---
+
+*Have questions or feedback? Find me on [GitHub](https://github.com/jigar-innovations) or reach out via the contact page.*

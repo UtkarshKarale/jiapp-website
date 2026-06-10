@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/project/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../../lib/utils';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort(
+  (a, b) => new Date(b.data.createdDate).getTime() - new Date(a.data.createdDate).getTime()
+);
+
+const selectedCategory = Astro.url.searchParams.get('category') || 'all';
+const filteredProjects = selectedCategory === 'all'
+  ? sortedProjects
+  : sortedProjects.filter((p) => p.data.category === selectedCategory);
+---
+
+<BaseLayout title="Projects" description="All software products, apps, and tools built by JI.">
+  <div class="pt-28 pb-20">
+    <div class="ji-container">
+      <!-- Header -->
+      <div class="mb-12 animate-on-scroll">
+        <span class="ji-label text-[rgb(var(--muted))]">Everything we've shipped</span>
+        <h1 class="ji-heading-lg mt-2 mb-4">
+          All <span class="ji-gradient-text">Projects</span>
+        </h1>
+        <p class="text-[rgb(var(--muted))] max-w-2xl">
+          A complete showcase of software products, applications, and tools built by JI.
+          From SaaS platforms to mobile apps and browser extensions.
+        </p>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-2 mb-10 animate-on-scroll">
+        <a
+          href="/projects"
+          class={`ji-badge cursor-pointer transition-all ${
+            selectedCategory === 'all'
+              ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30'
+              : 'bg-[rgb(var(--card-bg))] text-[rgb(var(--muted))] border border-[rgb(var(--border))] hover:border-indigo-500/30'
+          }`}
+        >
+          All Projects ({allProjects.length})
+        </a>
+        {CATEGORIES.map((cat) => {
+          const count = allProjects.filter((p) => p.data.category === cat.id).length;
+          return (
+            <a
+              href={`/projects?category=${cat.id}`}
+              class={`ji-badge cursor-pointer transition-all ${
+                selectedCategory === cat.id
+                  ? 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30'
+                  : 'bg-[rgb(var(--card-bg))] text-[rgb(var(--muted))] border border-[rgb(var(--border))] hover:border-indigo-500/30'
+              }`}
+            >
+              {cat.icon} {cat.label} ({count})
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- Projects Grid -->
+      {filteredProjects.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, i) => (
+            <ProjectCard project={project} delay={i * 80} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20">
+          <div class="text-4xl mb-4">📭</div>
+          <h3 class="ji-heading-sm mb-2">No projects found</h3>
+          <p class="text-[rgb(var(--muted))]">No projects in this category yet. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

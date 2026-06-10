@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/project/ProjectCard.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORIES, CATEGORY_MAP } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection('projects');
+  const allBlogs = await getCollection('blogs', ({ data }) => !data.draft);
+
+  // Project categories
+  const projectPaths = CATEGORIES.map((cat) => ({
+    params: { category: cat.id },
+    props: {
+      type: 'projects',
+      categoryId: cat.id,
+      projects: allProjects.filter((p) => p.data.category === cat.id),
+      blogs: [],
+    },
+  }));
+
+  // Blog categories
+  const blogCategories = [...new Set(allBlogs.map((p) => p.data.category))];
+  const blogPaths = blogCategories.map((cat) => ({
+    params: { category: cat.toLowerCase().replace(/\s+/g, '-') },
+    props: {
+      type: 'blogs',
+      categoryId: cat,
+      projects: [],
+      blogs: allBlogs.filter((p) => p.data.category === cat),
+    },
+  }));
+
+  return [...projectPaths, ...blogPaths];
+}
+
+const { type, categoryId, projects, blogs } = Astro.props;
+const category = CATEGORY_MAP[categoryId];
+const displayName = category?.label || categoryId;
+const icon = category?.icon || '📂';
+---
+
+<BaseLayout
+  title={`${displayName} — Category`}
+  description={`Browse all ${displayName} ${type} from JI.`}
+>
+  <div class="pt-28 pb-20">
+    <div class="ji-container">
+      <!-- Header -->
+      <div class="mb-12 animate-on-scroll">
+        <nav class="flex items-center gap-2 text-sm text-[rgb(var(--muted))] mb-6">
+          <a href="/" class="hover:text-[rgb(var(--foreground))] transition-colors">Home</a>
+          <span>/</span>
+          <a href={`/${type}`} class="hover:text-[rgb(var(--foreground))] transition-colors capitalize">{type}</a>
+          <span>/</span>
+          <span class="text-[rgb(var(--foreground))]">{displayName}</span>
+        </nav>
+
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-14 h-14 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--card-bg))] flex items-center justify-center text-3xl">
+            {icon}
+          </div>
+          <div>
+            <span class="ji-label text-[rgb(var(--muted))]">Category</span>
+            <h1 class="ji-heading-lg">{displayName}</h1>
+          </div>
+        </div>
+
+        {category?.description && (
+          <p class="text-[rgb(var(--muted))] max-w-2xl">{category.description}</p>
+        )}
+      </div>
+
+      <!-- Projects in category -->
+      {projects.length > 0 && (
+        <div class="mb-16">
+          <h2 class="ji-heading-sm text-[rgb(var(--muted))] mb-6">{projects.length} Project{projects.length !== 1 ? 's' : ''}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects
+              .sort((a, b) => new Date(b.data.createdDate).getTime() - new Date(a.data.createdDate).getTime())
+              .map((project, i) => (
+                <ProjectCard project={project} delay={i * 80} />
+              ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Blog posts in category -->
+      {blogs.length > 0 && (
+        <div>
+          <h2 class="ji-heading-sm text-[rgb(var(--muted))] mb-6">{blogs.length} Article{blogs.length !== 1 ? 's' : ''}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogs
+              .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+              .map((post, i) => (
+                <BlogCard post={post} delay={i * 80} />
+              ))}
+          </div>
+        </div>
+      )}
+
+      {projects.length === 0 && blogs.length === 0 && (
+        <div class="text-center py-20">
+          <div class="text-4xl mb-4">🚧</div>
+          <h3 class="ji-heading-sm mb-2">Nothing here yet</h3>
+          <p class="text-[rgb(var(--muted))]">This category is coming soon. Stay tuned!</p>
+          <a href="/" class="ji-btn-secondary mt-6 inline-flex">Go back home</a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,32 @@
+{
+  "title": "FinanceFlow",
+  "slug": "financeflow",
+  "description": "An intelligent personal finance and expense tracking SaaS with AI-powered insights, automated categorization, and goal-based savings planning.",
+  "longDescription": "FinanceFlow reimagines personal finance management with clean UX and AI-driven intelligence. Connect your bank accounts, track spending patterns, set savings goals, and receive personalized insights. The platform features automated transaction categorization, smart budgeting tools, investment tracking, and predictive cash flow analysis — all in a beautiful, intuitive interface.",
+  "category": "ji-apps",
+  "coverImage": "/images/projects/financeflow-cover.svg",
+  "galleryImages": [
+    "/images/projects/financeflow-1.svg",
+    "/images/projects/financeflow-2.svg"
+  ],
+  "technologies": ["Next.js", "TypeScript", "Scala", "PostgreSQL", "Prisma", "Razorpay", "Tailwind CSS"],
+  "features": [
+    "AI-powered transaction categorization with 95%+ accuracy",
+    "Multi-account aggregation via secure bank connections",
+    "Smart budget planner with real-time alerts",
+    "Goal-based savings with automated micro-investments",
+    "Predictive cash flow and expense forecasting",
+    "Beautiful analytics dashboard with charts and trends",
+    "CSV/PDF export and CPA-ready reports",
+    "End-to-end encrypted financial data"
+  ],
+  "liveUrl": "https://financeflow.app",
+  "githubUrl": "https://github.com/jigar-innovations/financeflow",
+  "status": "beta",
+  "featured": true,
+  "createdDate": "2024-07-20",
+  "stats": {
+    "users": "3.2K+",
+    "rating": "4.9"
+  }
+}

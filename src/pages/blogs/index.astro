@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allBlogs = await getCollection('blogs', ({ data }) => !data.draft);
+const sortedBlogs = allBlogs.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+// Get all unique tags and categories
+const allTags = [...new Set(sortedBlogs.flatMap((p) => p.data.tags))].sort();
+const allCategories = [...new Set(sortedBlogs.map((p) => p.data.category))].sort();
+
+const featuredPosts = sortedBlogs.filter((p) => p.data.featured);
+const regularPosts = sortedBlogs.filter((p) => !p.data.featured);
+---
+
+<BaseLayout title="Blog" description="Technical articles, tutorials, and stories from building software products at JI.">
+  <div class="pt-28 pb-20">
+    <div class="ji-container">
+      <!-- Header -->
+      <div class="mb-12 animate-on-scroll">
+        <span class="ji-label text-[rgb(var(--muted))]">Thoughts & tutorials</span>
+        <h1 class="ji-heading-lg mt-2 mb-4">
+          The <span class="ji-gradient-text">Blog</span>
+        </h1>
+        <p class="text-[rgb(var(--muted))] max-w-2xl">
+          Technical deep-dives, product stories, and lessons learned from building software products.
+          Written for developers and indie builders.
+        </p>
+      </div>
+
+      <!-- RSS Link -->
+      <a href="/rss.xml" class="inline-flex items-center gap-2 text-sm text-[rgb(var(--muted))] hover:text-orange-400 transition-colors mb-8 ji-label">
+        <svg class="w-4 h-4 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/>
+        </svg>
+        Subscribe via RSS
+      </a>
+
+      <!-- Featured Posts -->
+      {featuredPosts.length > 0 && (
+        <div class="mb-16 animate-on-scroll">
+          <h2 class="ji-heading-sm mb-6 text-[rgb(var(--muted))]">Featured</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featuredPosts.map((post, i) => (
+              <BlogCard post={post} delay={i * 100} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <!-- Main Posts -->
+        <div class="lg:col-span-3">
+          {regularPosts.length > 0 && (
+            <div>
+              <h2 class="ji-heading-sm mb-6 text-[rgb(var(--muted))]">All Articles</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {regularPosts.map((post, i) => (
+                  <BlogCard post={post} delay={i * 80} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {sortedBlogs.length === 0 && (
+            <div class="text-center py-20">
+              <div class="text-4xl mb-4">✍️</div>
+              <h3 class="ji-heading-sm mb-2">No posts yet</h3>
+              <p class="text-[rgb(var(--muted))]">Check back soon for articles and tutorials.</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-8">
+          <!-- Categories -->
+          {allCategories.length > 0 && (
+            <div class="ji-card animate-on-scroll">
+              <h3 class="ji-heading-sm mb-4">Categories</h3>
+              <ul class="space-y-2">
+                {allCategories.map((cat) => {
+                  const count = sortedBlogs.filter((p) => p.data.category === cat).length;
+                  return (
+                    <li>
+                      <a href={`/categories/${cat.toLowerCase().replace(/\s+/g, '-')}`}
+                        class="flex items-center justify-between text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--foreground))] transition-colors">
+                        <span>{cat}</span>
+                        <span class="ji-badge bg-[rgb(var(--background))] border border-[rgb(var(--border))] text-xs">{count}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+
+          <!-- Tags -->
+          {allTags.length > 0 && (
+            <div class="ji-card animate-on-scroll">
+              <h3 class="ji-heading-sm mb-4">Tags</h3>
+              <div class="flex flex-wrap gap-2">
+                {allTags.map((tag) => (
+                  <a href={`/tags/${tag}`}
+                    class="text-xs px-2 py-1 rounded-full bg-[rgb(var(--background))] border border-[rgb(var(--border))] text-[rgb(var(--muted))] hover:text-indigo-400 hover:border-indigo-500/30 transition-all">
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

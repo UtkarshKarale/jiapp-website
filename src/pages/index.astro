@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Stats from '../components/home/Stats.astro';
+import CategoryShowcase from '../components/home/CategoryShowcase.astro';
+import ProjectCard from '../components/project/ProjectCard.astro';
+import BlogCard from '../components/blog/BlogCard.astro';
+import Newsletter from '../components/home/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => new Date(b.data.createdDate).getTime() - new Date(a.data.createdDate).getTime());
+
+const allBlogs = await getCollection('blogs', ({ data }) => !data.draft);
+const recentBlogs = allBlogs
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <Hero />
+  <Stats />
+  <CategoryShowcase />
+
+  <section class="ji-section">
+    <div class="ji-container">
+      <div class="flex items-end justify-between mb-12 animate-on-scroll">
+        <div>
+          <span class="ji-label text-[rgb(var(--muted))]">Handpicked work</span>
+          <h2 class="ji-heading-lg mt-2">
+            Featured <span class="ji-gradient-text">Projects</span>
+          </h2>
+        </div>
+        <a href="/projects" class="ji-btn-secondary hidden sm:inline-flex">
+          View all projects
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featuredProjects.map((project, i) => (
+          <ProjectCard project={project} delay={i * 100} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {recentBlogs.length > 0 && (
+    <section class="ji-section" style="background-color: rgb(var(--card-bg));">
+      <div class="ji-container">
+        <div class="flex items-end justify-between mb-12 animate-on-scroll">
+          <div>
+            <span class="ji-label text-[rgb(var(--muted))]">Latest writing</span>
+            <h2 class="ji-heading-lg mt-2">
+              From the <span class="ji-gradient-text">Blog</span>
+            </h2>
+          </div>
+          <a href="/blogs" class="ji-btn-secondary hidden sm:inline-flex">
+            All articles
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recentBlogs.map((post, i) => (
+            <BlogCard post={post} delay={i * 100} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Newsletter />
+</BaseLayout>

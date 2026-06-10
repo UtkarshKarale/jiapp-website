@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Page Not Found" description="The page you're looking for doesn't exist.">
+  <div class="min-h-[80vh] flex items-center justify-center pt-20">
+    <div class="ji-container text-center">
+      <div class="animate-fade-up">
+        <!-- Big 404 -->
+        <div class="relative inline-block mb-8">
+          <span class="text-[180px] sm:text-[220px] font-black leading-none select-none"
+            style="font-family: 'Syne', sans-serif; background: linear-gradient(135deg, rgb(99 102 241 / 0.15), rgb(34 211 238 / 0.15)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            404
+          </span>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-6xl animate-float">🔭</span>
+          </div>
+        </div>
+
+        <h1 class="ji-heading-lg mb-4">Page not found</h1>
+        <p class="text-lg text-[rgb(var(--muted))] mb-10 max-w-md mx-auto">
+          Looks like this page has been shipped to production and then promptly deleted.
+          Happens to the best of us.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/" class="ji-btn-primary">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Go Home
+          </a>
+          <a href="/projects" class="ji-btn-secondary">Browse Projects</a>
+          <a href="/blogs" class="ji-btn-secondary">Read the Blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

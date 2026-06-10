@@ -1,0 +1,149 @@
+---
+import { getCategoryClass, getStatusClass, CATEGORY_MAP } from '../../lib/utils';
+
+interface Props {
+  project: {
+    id: string;
+    data: {
+      title: string;
+      slug: string;
+      description: string;
+      category: string;
+      coverImage: string;
+      technologies: string[];
+      status: string;
+      featured: boolean;
+      liveUrl?: string;
+      githubUrl?: string;
+      stats?: {
+        users?: string;
+        rating?: string;
+        downloads?: string;
+      };
+    };
+  };
+  featured?: boolean;
+  delay?: number;
+}
+
+const { project, featured = false, delay = 0 } = Astro.props;
+const { data } = project;
+const category = CATEGORY_MAP[data.category];
+---
+
+<a
+  href={`/projects/${data.slug}`}
+  class={`group block ji-card-hover animate-on-scroll ${featured ? 'lg:flex lg:gap-8' : ''}`}
+  style={`transition-delay: ${delay}ms`}
+>
+  <!-- Cover Image -->
+  <div class={`relative overflow-hidden rounded-xl bg-gradient-to-br from-[rgb(var(--card-bg))] to-[rgb(var(--border))] mb-5 ${featured ? 'lg:w-64 lg:flex-shrink-0 lg:mb-0 h-48 lg:h-auto' : 'h-48'}`}>
+    <img
+      src={data.coverImage}
+      alt={data.title}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      loading="lazy"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+    />
+    <!-- Fallback -->
+    <div class="absolute inset-0 hidden items-center justify-center text-4xl">
+      {category?.icon || '📦'}
+    </div>
+    <!-- Status badge -->
+    <div class="absolute top-3 right-3">
+      <span class={`ji-badge ${getStatusClass(data.status)} text-xs capitalize`}>
+        {data.status}
+      </span>
+    </div>
+    {data.featured && (
+      <div class="absolute top-3 left-3">
+        <span class="ji-badge bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs">
+          ★ Featured
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- Content -->
+  <div class="flex-1">
+    <!-- Category -->
+    <div class="flex items-center gap-2 mb-3">
+      <span class={`ji-badge ${getCategoryClass(data.category)}`}>
+        {category?.icon} {category?.label || data.category}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="ji-heading-sm mb-2 group-hover:text-indigo-400 transition-colors">
+      {data.title}
+    </h3>
+
+    <!-- Description -->
+    <p class="text-sm text-[rgb(var(--muted))] leading-relaxed mb-4 line-clamp-2">
+      {data.description}
+    </p>
+
+    <!-- Stats -->
+    {data.stats && (
+      <div class="flex gap-4 mb-4">
+        {data.stats.users && (
+          <div>
+            <div class="text-sm font-semibold text-[rgb(var(--foreground))]">{data.stats.users}</div>
+            <div class="text-xs text-[rgb(var(--muted))]">Users</div>
+          </div>
+        )}
+        {data.stats.rating && (
+          <div>
+            <div class="text-sm font-semibold text-[rgb(var(--foreground))]">⭐ {data.stats.rating}</div>
+            <div class="text-xs text-[rgb(var(--muted))]">Rating</div>
+          </div>
+        )}
+        {data.stats.downloads && (
+          <div>
+            <div class="text-sm font-semibold text-[rgb(var(--foreground))]">{data.stats.downloads}</div>
+            <div class="text-xs text-[rgb(var(--muted))]">Downloads</div>
+          </div>
+        )}
+      </div>
+    )}
+
+    <!-- Technologies -->
+    <div class="flex flex-wrap gap-1.5 mb-4">
+      {data.technologies.slice(0, 4).map((tech) => (
+        <span class="px-2 py-1 text-xs rounded-md bg-[rgb(var(--background))] border border-[rgb(var(--border))] text-[rgb(var(--muted))] font-mono">
+          {tech}
+        </span>
+      ))}
+      {data.technologies.length > 4 && (
+        <span class="px-2 py-1 text-xs rounded-md bg-[rgb(var(--background))] border border-[rgb(var(--border))] text-[rgb(var(--muted))]">
+          +{data.technologies.length - 4}
+        </span>
+      )}
+    </div>
+
+    <!-- Links -->
+    <div class="flex items-center gap-3">
+      {data.liveUrl && (
+        <span class="ji-label text-indigo-400 text-xs flex items-center gap-1">
+          <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Live
+        </span>
+      )}
+      {data.githubUrl && (
+        <span class="ji-label text-[rgb(var(--muted))] text-xs flex items-center gap-1">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          Open Source
+        </span>
+      )}
+      <span class="ml-auto text-[rgb(var(--muted))] group-hover:text-indigo-400 transition-colors">
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </span>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allBlogs = await getCollection('blogs', ({ data }) => !data.draft);
+  const allTags = [...new Set(allBlogs.flatMap((p) => p.data.tags))];
+
+  return allTags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: allBlogs.filter((p) => p.data.tags.includes(tag)),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+---
+
+<BaseLayout
+  title={`#${tag} — Tag`}
+  description={`All blog posts tagged with #${tag} from JI.`}
+>
+  <div class="pt-28 pb-20">
+    <div class="ji-container">
+      <div class="mb-12 animate-on-scroll">
+        <nav class="flex items-center gap-2 text-sm text-[rgb(var(--muted))] mb-6">
+          <a href="/" class="hover:text-[rgb(var(--foreground))] transition-colors">Home</a>
+          <span>/</span>
+          <a href="/blogs" class="hover:text-[rgb(var(--foreground))] transition-colors">Blog</a>
+          <span>/</span>
+          <span class="text-[rgb(var(--foreground))]">#{tag}</span>
+        </nav>
+
+        <span class="ji-label text-[rgb(var(--muted))]">Tag</span>
+        <h1 class="ji-heading-lg mt-2">
+          <span class="text-indigo-400">#</span>{tag}
+        </h1>
+        <p class="text-[rgb(var(--muted))] mt-2">
+          {sortedPosts.length} article{sortedPosts.length !== 1 ? 's' : ''} tagged with #{tag}
+        </p>
+      </div>
+
+      {sortedPosts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sortedPosts.map((post, i) => (
+            <BlogCard post={post} delay={i * 80} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20">
+          <div class="text-4xl mb-4">🏷️</div>
+          <h3 class="ji-heading-sm mb-2">No posts found</h3>
+          <a href="/blogs" class="ji-btn-secondary mt-4 inline-flex">Browse all posts</a>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

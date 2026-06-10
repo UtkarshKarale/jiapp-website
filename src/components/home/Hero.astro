@@ -1,0 +1,63 @@
+---
+---
+
+<section class="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
+  <!-- Background effects -->
+  <div class="absolute inset-0 ji-dot-bg opacity-40 dark:opacity-20"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Gradient overlay at bottom -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[rgb(var(--background))] to-transparent pointer-events-none"></div>
+
+  <div class="ji-container relative z-10">
+    <div class="max-w-4xl">
+      <!-- Label -->
+      <div class="inline-flex items-center gap-2 ji-badge bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-6 animate-fade-up">
+        <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></div>
+        <span class="ji-label">Jigar Innovations</span>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="ji-heading-xl text-[rgb(var(--foreground))] mb-6 animate-fade-up animate-delay-100">
+        Building Software,{' '}
+        <span class="relative">
+          <span class="ji-gradient-text">AI Tools</span>
+        </span>
+        {' '}&amp; Digital Products
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg sm:text-xl text-[rgb(var(--muted))] leading-relaxed mb-10 max-w-2xl animate-fade-up animate-delay-200">
+        JI App is the home of all products, apps, and tools crafted by Jigar Innovations —
+        from SaaS platforms and mobile apps to browser extensions and open-source libraries.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fade-up animate-delay-300">
+        <a href="/projects" class="ji-btn-primary">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0l-7 7m7-7l-7-7" />
+          </svg>
+          Explore Projects
+        </a>
+        <a href="/blogs" class="ji-btn-secondary">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          Read Blogs
+        </a>
+      </div>
+
+      <!-- Tech stack pills -->
+      <div class="mt-12 flex flex-wrap gap-2 animate-fade-up animate-delay-400">
+        <span class="ji-label text-[rgb(var(--muted))] self-center mr-2">Built with:</span>
+        {['Next.js', 'Spring Boot', 'Flutter', 'Kotlin', 'TypeScript', 'PostgreSQL', 'Docker'].map(tech => (
+          <span class="px-3 py-1 text-xs rounded-full bg-[rgb(var(--card-bg))] border border-[rgb(var(--border))] text-[rgb(var(--muted))] font-mono">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
