@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pricing | JiApps">
+  <main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 relative">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8b8a891a_1px,transparent_1px),linear-gradient(to_bottom,#8b8a891a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-10"></div>
+    
+    <div class="max-w-4xl mx-auto text-center space-y-6 mt-12 w-full">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold uppercase tracking-wider mb-2">
+        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+        7 Days Free Trial
+      </div>
+      <h1 class="font-display text-6xl md:text-7xl font-extrabold text-ink tracking-tight">
+        BillZ POS Pricing
+      </h1>
+      <p class="text-xl md:text-2xl text-ink-light font-body max-w-2xl mx-auto mb-6">
+        Affordable, transparent pricing tailored for Indian retailers. Try any plan free for 7 days.
+      </p>
+    </div>
+
+    <!-- Launch Offer Banner -->
+    <div class="max-w-3xl mx-auto w-full mt-6 mb-12">
+      <div class="bg-gradient-to-r from-brand-500 to-brand-600 rounded-2xl p-6 text-white text-center shadow-lg shadow-brand-500/20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-10 rounded-full blur-xl"></div>
+        <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-black opacity-10 rounded-full blur-xl"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center gap-2">
+          <div class="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-1">
+            Limited Time Launch Offer
+          </div>
+          <h3 class="text-2xl md:text-3xl font-display font-bold">Buy 1 Month, Get 3 Months</h3>
+          <p class="text-brand-50 font-medium">Sign up today and your first month payment will cover you for 90 days.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+      
+      <!-- Solo Plan -->
+      <div class="border border-border bg-surface p-10 rounded-3xl shadow-sm flex flex-col">
+        <h3 class="font-display text-2xl font-bold text-ink mb-2">Solo</h3>
+        <p class="text-ink-light text-sm mb-6">Perfect for single-counter retail shops.</p>
+        <div class="mb-8">
+          <span class="text-5xl font-extrabold text-ink">₹99</span>
+          <span class="text-ink-light font-medium">/month</span>
+          <p class="text-brand-600 text-sm font-bold mt-2 bg-brand-50 inline-block px-2 py-1 rounded-md">Launch Offer: Pay ₹99 for 3 Months!</p>
+        </div>
+        
+        <ul class="space-y-4 mb-8 flex-grow">
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Single PC installation
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Unlimited Products & Invoices
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Basic thermal printing
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Standard email support
+          </li>
+        </ul>
+        <a href="https://accounts.jiapp.online" class="w-full block text-center bg-surface border border-border text-ink font-bold py-4 rounded-xl hover:bg-brand-50 hover:text-brand-600 transition-colors">
+          Start 7-Day Free Trial
+        </a>
+      </div>
+
+      <!-- Multi-Counter Plan -->
+      <div class="border-2 border-brand-500 bg-surface p-10 rounded-3xl shadow-xl shadow-brand-500/10 flex flex-col relative transform md:-translate-y-4">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+          Most Popular
+        </div>
+        <h3 class="font-display text-2xl font-bold text-ink mb-2">Multi-Counter</h3>
+        <p class="text-ink-light text-sm mb-6">For growing businesses with multiple billing lanes.</p>
+        <div class="mb-8">
+          <span class="text-5xl font-extrabold text-ink">₹199</span>
+          <span class="text-ink-light font-medium">/month</span>
+          <p class="text-brand-600 text-sm font-bold mt-2 bg-brand-50 inline-block px-2 py-1 rounded-md">Launch Offer: Pay ₹199 for 3 Months!</p>
+        </div>
+        
+        <ul class="space-y-4 mb-8 flex-grow">
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="font-medium text-ink">Everything in Solo</span>
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Multi-PC LAN Sync
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Apparel Size/Color Matrix
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Instant WhatsApp Receipts
+          </li>
+          <li class="flex items-center gap-3 text-ink-light">
+            <svg class="w-5 h-5 text-brand-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            Priority WhatsApp Support
+          </li>
+        </ul>
+        <a href="https://accounts.jiapp.online" class="w-full block text-center bg-brand-500 text-white font-bold py-4 rounded-xl hover:bg-brand-600 transition-colors shadow-lg shadow-brand-500/30">
+          Start 7-Day Free Trial
+        </a>
+      </div>
+
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-3xl mx-auto mt-32 w-full">
+      <h2 class="font-display text-3xl font-bold text-ink mb-8 text-center">Frequently Asked Questions</h2>
+      
+      <div class="space-y-6">
+        <div class="border border-border bg-surface p-6 rounded-2xl">
+          <h4 class="font-bold text-ink mb-2">How does the 7-day free trial work?</h4>
+          <p class="text-ink-light text-sm leading-relaxed">You can sign up for either the Solo or Multi-Counter plan and get full access for 7 days without being charged. If you decide it's not for you, simply cancel before the trial ends.</p>
+        </div>
+        <div class="border border-border bg-surface p-6 rounded-2xl">
+          <h4 class="font-bold text-ink mb-2">Do I need internet to use BillZ?</h4>
+          <p class="text-ink-light text-sm leading-relaxed">No. BillZ is entirely offline-first. You only need internet occasionally to verify your active subscription or if you choose to send digital receipts via WhatsApp.</p>
+        </div>
+        <div class="border border-border bg-surface p-6 rounded-2xl">
+          <h4 class="font-bold text-ink mb-2">How does the LAN sync work in the Multi-Counter plan?</h4>
+          <p class="text-ink-light text-sm leading-relaxed">The primary PC acts as the local server. Secondary PCs connect to it over your local Wi-Fi router. You don't need an active internet connection, just a local network.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

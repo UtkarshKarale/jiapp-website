@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded square background -->
+  <rect x="16" y="16" width="224" height="224" rx="48" fill="#c05c3c" />
+  <!-- Receipt / POS Icon -->
+  <path d="M76 64h104M76 104h104M76 144h64M84 212l16-16 16 16 16-16 16 16 16-16 16 16V44a12 12 0 00-12-12H68a12 12 0 00-12 12v168l12-12 16 16z" stroke="white" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

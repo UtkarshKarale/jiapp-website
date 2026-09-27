@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="BillZ POS | JiApps">
+  <main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 relative overflow-hidden">
+    
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8b8a891a_1px,transparent_1px),linear-gradient(to_bottom,#8b8a891a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-10"></div>
+    
+    <div class="max-w-5xl mx-auto text-center space-y-8 mt-12 w-full">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border text-ink-light text-sm font-medium mb-8 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+        Offline-first Point of Sale
+      </div>
+
+      <h1 class="font-display text-6xl md:text-8xl font-extrabold text-ink leading-[1.1] tracking-tight mb-8">
+        Say goodbye to <br/> 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">cloud subscriptions.</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-ink-light font-body max-w-2xl mx-auto leading-relaxed mb-10">
+        BillZ is a lightning-fast, native desktop POS built for Indian retailers. Run multiple counters over local Wi-Fi with zero database fees.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://github.com/UtkarshKarale/billz-release" target="_blank" class="w-full sm:w-auto bg-ink hover:bg-ink-light text-white font-medium px-8 py-4 rounded-xl transition-all shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download for Windows
+        </a>
+        <a href="https://github.com/UtkarshKarale/billz-release" target="_blank" class="w-full sm:w-auto bg-surface border border-border hover:border-brand-300 text-ink font-medium px-8 py-4 rounded-xl transition-all hover:text-brand-600 shadow-sm flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download for Linux
+        </a>
+      </div>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="max-w-6xl mx-auto mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      <!-- Feature 1 -->
+      <div class="border border-border bg-surface p-8 rounded-2xl">
+        <div class="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+          </svg>
+        </div>
+        <h3 class="font-display font-medium text-xl text-ink mb-2">100% Offline Capable</h3>
+        <p class="text-sm text-ink-light leading-relaxed">
+          Powered by a robust local SQLite database. Even if your internet connection goes down for days, your billing never stops.
+        </p>
+      </div>
+      
+      <!-- Feature 2 -->
+      <div class="border border-border bg-surface p-8 rounded-2xl">
+        <div class="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <h3 class="font-display font-medium text-xl text-ink mb-2">Native Hardware</h3>
+        <p class="text-sm text-ink-light leading-relaxed">
+          Instantly connects with barcode scanners and thermal printers. No more clunky browser print dialogs slowing down your checkout lane.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="border border-border bg-surface p-8 rounded-2xl">
+        <div class="w-10 h-10 bg-brand-50 rounded-lg flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+        <h3 class="font-display font-medium text-xl text-ink mb-2">WhatsApp Receipts</h3>
+        <p class="text-sm text-ink-light leading-relaxed">
+          Send digital receipts directly to your customer's WhatsApp instantly. Save on paper and provide a modern retail experience.
+        </p>
+      </div>
+    </div>
+
+  </main>
+</Layout>

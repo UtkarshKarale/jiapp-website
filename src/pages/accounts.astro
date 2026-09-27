@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Accounts | JiApps">
+  <main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 relative overflow-hidden">
+    
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8b8a891a_1px,transparent_1px),linear-gradient(to_bottom,#8b8a891a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-10"></div>
+    
+    <div class="max-w-5xl mx-auto text-center space-y-8 mt-12 w-full">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border text-ink-light text-sm font-medium mb-8 shadow-sm">
+        <svg class="w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        Unified Identity
+      </div>
+
+      <h1 class="font-display text-6xl md:text-8xl font-extrabold text-ink leading-[1.1] tracking-tight mb-8">
+        One account for the <br/> 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-ink-light to-ink-lighter">entire ecosystem.</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-ink-light font-body max-w-2xl mx-auto leading-relaxed mb-10">
+        Manage your store profile, software licenses, subscriptions, and security from one centralized dashboard.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://accounts.jiapp.online" class="w-full sm:w-auto bg-ink hover:bg-ink-light text-white font-medium px-8 py-4 rounded-xl transition-all shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
+          Sign in to Dashboard
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="max-w-4xl mx-auto mt-32 grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+      <!-- Feature 1 -->
+      <div class="border border-border bg-surface p-8 rounded-2xl flex gap-6 items-start">
+        <div class="w-12 h-12 shrink-0 bg-slate-50 border border-border rounded-xl flex items-center justify-center">
+          <span class="font-display font-bold text-xl text-ink">1</span>
+        </div>
+        <div>
+          <h3 class="font-display font-medium text-xl text-ink mb-2">Secure SSO</h3>
+          <p class="text-sm text-ink-light leading-relaxed">
+            Authenticate once and access all your JiApps tools seamlessly. Uses industry-standard encryption and OAuth flows.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Feature 2 -->
+      <div class="border border-border bg-surface p-8 rounded-2xl flex gap-6 items-start">
+        <div class="w-12 h-12 shrink-0 bg-slate-50 border border-border rounded-xl flex items-center justify-center">
+          <span class="font-display font-bold text-xl text-ink">2</span>
+        </div>
+        <div>
+          <h3 class="font-display font-medium text-xl text-ink mb-2">License Management</h3>
+          <p class="text-sm text-ink-light leading-relaxed">
+            Easily view, revoke, or renew licenses for your offline desktop applications securely from the web.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</Layout>

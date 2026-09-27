@@ -1,167 +1,43 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_CONFIG } from '../lib/utils';
-
-const skills = [
-  { category: 'Frontend', items: ['Next.js', 'React', 'Astro', 'Flutter', 'TypeScript', 'Tailwind CSS'] },
-  { category: 'Backend', items: ['Spring Boot', 'Kotlin', 'Java', 'Scala', 'Node.js', 'PostgreSQL'] },
-  { category: 'Infrastructure', items: ['Docker', 'Linux', 'Cloudflare', 'GitHub Actions', 'Redis', 'Nginx'] },
-  { category: 'Mobile', items: ['Flutter', 'Dart', 'Android', 'Kotlin Multiplatform'] },
-];
-
-const timeline = [
-  {
-    year: '2026',
-    title: 'Building JI',
-    description: 'Launched JI App as the central hub for all products. Building Monitoro and JI Store while growing toward full-time entrepreneurship.',
-  },
-  {
-    year: '2025',
-    title: 'First Products Shipped',
-    description: 'Shipped Monitoro (uptime monitoring) and JI Store (invoice & coupon management), started exploring the indie SaaS space seriously. Gained 1,500+ early users across products.',
-  },
-  {
-    year: '2024',
-    title: 'Side Projects & Learning',
-    description: 'Began building side projects alongside a full-time software engineering role. Explored Spring Boot, Kotlin, Flutter, and modern web technologies deeply.',
-  },
-  {
-    year: '2023',
-    title: 'Professional Start',
-    description: 'Started career as a software developer. Built strong foundations in Java, Spring Boot, databases, and system design.',
-  },
-];
+import Layout from '../layouts/Layout.astro';
 ---
 
-<BaseLayout title="About" description="Learn about JI — a one-person software studio building products for Indian users and businesses.">
-  <div class="pt-28 pb-20">
-    <div class="ji-container">
-      <!-- Hero -->
-      <div class="max-w-3xl mb-20 animate-fade-up">
-        <span class="ji-label text-[rgb(var(--muted))] mb-3 block">The person behind the products</span>
-        <h1 class="ji-heading-xl mb-6">
-          Hi, I'm <span class="ji-gradient-text">JI</span>
-        </h1>
-        <p class="text-xl text-[rgb(var(--muted))] leading-relaxed mb-6">
-          A software developer and aspiring entrepreneur from Pune, India — building software products,
-          SaaS tools, and open-source projects that solve real problems.
+<Layout title="About | JiApps">
+  <main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 relative">
+    
+    <!-- Background pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8b8a891a_1px,transparent_1px),linear-gradient(to_bottom,#8b8a891a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-10"></div>
+    
+    <div class="max-w-4xl mx-auto text-center space-y-8 mt-12 w-full">
+      <h1 class="font-display text-6xl md:text-7xl font-extrabold text-ink tracking-tight">
+        Building for the <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">Indian retailer.</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-ink-light font-body max-w-2xl mx-auto mb-16">
+        JiApps was founded with a single mission: to provide fast, reliable, and affordable technology to businesses that have been ignored by Silicon Valley.
+      </p>
+    </div>
+
+    <!-- Our Story -->
+    <div class="max-w-4xl mx-auto w-full border border-border bg-surface p-12 rounded-3xl shadow-sm mt-12">
+      <div class="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-headings:text-ink prose-p:text-ink-light prose-strong:text-ink max-w-none">
+        <h2>The Problem with Modern SaaS</h2>
+        <p>
+          Over the last decade, software has moved entirely to the cloud. While this works great for tech startups with gigabit internet, it's a nightmare for a busy garment store in a tier-2 Indian city. Network drops mean lost sales. Cloud databases mean recurring monthly "tax" just to access your own inventory.
         </p>
-        <p class="text-lg text-[rgb(var(--muted))] leading-relaxed">
-          I work full-time as a software developer while building my product portfolio on the side.
-          My goal is to transition to full-time product building — one shipped product at a time.
+        
+        <h2>The JiApps Approach</h2>
+        <p>
+          We believe in <strong>Offline-First Architecture</strong>. We build native applications that leverage the full power of your local hardware. Whether you're running our flagship POS system, BillZ, or our unified Accounts ecosystem, you can be certain that your software will work at the speed of light—with or without an internet connection.
         </p>
-
-        <div class="flex flex-wrap gap-3 mt-8">
-          <a href="/contact" class="ji-btn-primary">Get in Touch</a>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
-        <!-- Main content -->
-        <div class="lg:col-span-2 space-y-16">
-          <!-- What I build -->
-          <div class="animate-on-scroll">
-            <h2 class="ji-heading-md mb-6">What I Build</h2>
-            <div class="space-y-4 text-[rgb(var(--muted))] leading-relaxed">
-              <p>
-                I build software products primarily targeting Indian users and businesses. The Indian market is
-                enormous, underserved by quality software, and offers unique opportunities for developers who
-                understand the local context.
-              </p>
-              <p>
-                My products solve real problems — <strong class="text-[rgb(var(--foreground))]">Monitoro</strong> for uptime monitoring and alerts for indie developers who can't afford enterprise costs, and <strong class="text-[rgb(var(--foreground))]">JI Store</strong> for managing invoices and coupons with ease.
-              </p>
-              <p>
-                Every product I build starts with a genuine problem I or someone close to me has faced.
-                I believe the best products come from deep empathy with the problem, not from market research alone.
-              </p>
-            </div>
-          </div>
-
-          <!-- Timeline -->
-          <div class="animate-on-scroll">
-            <h2 class="ji-heading-md mb-8">Journey</h2>
-            <div class="relative">
-              <!-- Timeline line -->
-              <div class="absolute left-6 top-0 bottom-0 w-px bg-[rgb(var(--border))]"></div>
-
-              <div class="space-y-8">
-                {timeline.map((item, i) => (
-                  <div class="relative pl-16" style={`animation-delay: ${i * 100}ms`}>
-                    <!-- Year dot -->
-                    <div class="absolute left-0 w-12 h-12 rounded-full bg-[rgb(var(--card-bg))] border-2 border-[rgb(var(--border))] flex items-center justify-center">
-                      <span class="text-xs font-mono text-indigo-400 font-bold">{item.year.slice(2)}</span>
-                    </div>
-
-                    <div class="ji-card">
-                      <div class="ji-label text-indigo-400 mb-1">{item.year}</div>
-                      <h3 class="font-semibold mb-2" style="font-family: 'Syne', sans-serif;">{item.title}</h3>
-                      <p class="text-sm text-[rgb(var(--muted))] leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sidebar -->
-        <div class="space-y-8">
-          <!-- Avatar / Brand card -->
-          <div class="ji-card text-center animate-on-scroll">
-            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4" style="font-family: 'Syne', sans-serif;">
-              JI
-            </div>
-            <h3 class="font-semibold mb-1" style="font-family: 'Syne', sans-serif;">JI</h3>
-            <p class="text-sm text-[rgb(var(--muted))] mb-4">Software Developer & Indie Builder</p>
-            <div class="flex items-center justify-center gap-1 text-xs text-[rgb(var(--muted))]">
-              <span>📍</span>
-              <span>Pune, Maharashtra, India</span>
-            </div>
-          </div>
-
-          <!-- Tech Skills -->
-          <div class="ji-card animate-on-scroll">
-            <h3 class="ji-heading-sm mb-5">Tech Stack</h3>
-            <div class="space-y-4">
-              {skills.map((group) => (
-                <div>
-                  <div class="ji-label text-[rgb(var(--muted))] mb-2">{group.category}</div>
-                  <div class="flex flex-wrap gap-1.5">
-                    {group.items.map((skill) => (
-                      <span class="text-xs px-2 py-1 rounded-md bg-[rgb(var(--background))] border border-[rgb(var(--border))] text-[rgb(var(--muted))] font-mono">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <!-- Quick Links -->
-          <div class="ji-card animate-on-scroll">
-            <h3 class="ji-heading-sm mb-4">Connect</h3>
-            <div class="space-y-2">
-              {[
-                { href: SITE_CONFIG.linkedin, label: 'LinkedIn', icon: '💼' },
-                { href: SITE_CONFIG.youtube, label: 'YouTube', icon: '▶' },
-                { href: '/contact', label: 'Send a message', icon: '✉' },
-              ].map(({ href, label, icon }) => (
-                <a
-                  href={href}
-                  target={href.startsWith('http') ? '_blank' : undefined}
-                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  class="flex items-center gap-3 text-sm text-[rgb(var(--muted))] hover:text-[rgb(var(--foreground))] transition-colors py-1.5"
-                >
-                  <span class="text-indigo-400">{icon}</span>
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        
+        <h2>Our Values</h2>
+        <ul>
+          <li><strong>Speed over everything:</strong> A checkout should take 2 seconds, not 20.</li>
+          <li><strong>Data Sovereignty:</strong> Your data lives on your machine.</li>
+          <li><strong>Zero Cloud Tax:</strong> We prefer fair, lifetime pricing models over endless subscriptions.</li>
+        </ul>
       </div>
     </div>
-  </div>
-</BaseLayout>
+  </main>
+</Layout>

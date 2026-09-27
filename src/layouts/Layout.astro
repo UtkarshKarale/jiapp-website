@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+const { title = "JiApps | Specialized Tools for Business" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-background text-ink font-body antialiased selection:bg-brand-100 selection:text-brand-900 min-h-screen flex flex-col">
+    
+    <!-- Navigation -->
+    <nav class="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-6 h-6 bg-ink rounded-sm flex items-center justify-center">
+            <span class="text-white text-xs font-bold font-display">Ji</span>
+          </div>
+          <span class="font-display font-medium text-lg tracking-tight">JiApps</span>
+        </a>
+        <div class="flex items-center gap-6 text-sm font-medium">
+          <a href="/#products" class="text-ink-light hover:text-brand-600 transition-colors">Products</a>
+          <a href="/pricing" class="text-ink-light hover:text-brand-600 transition-colors">Pricing</a>
+          <a href="https://accounts.jiapp.online" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl transition-colors shadow-sm">Sign in</a>
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-surface py-20 px-6 mt-12">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
+        
+        <!-- About Section -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-5 h-5 bg-ink rounded-sm flex items-center justify-center">
+              <span class="text-white text-[10px] font-bold font-display">Ji</span>
+            </div>
+            <span class="font-display font-medium text-lg tracking-tight">JiApps</span>
+          </div>
+          <p class="text-ink-light leading-relaxed max-w-sm">
+            JiApps builds specialized software and operational tools to help businesses run faster, smarter, and with complete control.
+          </p>
+          <div class="pt-2">
+            <a href="/about" class="text-brand-600 hover:text-brand-700 font-medium text-sm">Read our story &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div class="space-y-4">
+          <h4 class="font-medium text-ink">Products</h4>
+          <ul class="space-y-3 text-ink-light">
+            <li><a href="/billz" class="hover:text-brand-600 transition-colors">BillZ POS</a></li>
+            <li><a href="/accounts" class="hover:text-brand-600 transition-colors">JiApps Accounts</a></li>
+            <li>
+              <a href="/pricing" class="hover:text-brand-600 transition-colors group flex items-center gap-2">
+                Pricing
+                <span class="bg-brand-50 text-brand-600 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">7 Days Free</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="space-y-4">
+          <h4 class="font-medium text-ink">Company</h4>
+          <ul class="space-y-3 text-ink-light">
+            <li><a href="/blog" class="hover:text-brand-600 transition-colors">Blog</a></li>
+            <li><a href="/contact" class="hover:text-brand-600 transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="max-w-6xl mx-auto mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between text-xs text-ink-lighter">
+        <p>© 2026 JiApps. All rights reserved.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="#" class="hover:text-ink transition-colors">Privacy</a>
+          <a href="#" class="hover:text-ink transition-colors">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

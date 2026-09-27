@@ -5,60 +5,31 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Syne"', 'sans-serif'],
-        body: ['"DM Sans"', 'sans-serif'],
+        display: ['"Poppins"', 'system-ui', 'sans-serif'],
+        body: ['"Poppins"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
-        ji: {
-          50: '#f0f4ff',
-          100: '#e0e9ff',
-          200: '#c7d7fe',
-          300: '#a5b8fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
+        background: '#fcfbf9',
+        surface: '#ffffff',
+        border: '#E6E4DD',
+        ink: {
+          DEFAULT: '#1c1b1a',
+          light: '#4b4a49',
+          lighter: '#8b8a89',
         },
-        accent: {
-          DEFAULT: '#22d3ee',
-          dark: '#0891b2',
-        }
-      },
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            fontFamily: theme('fontFamily.body'),
-            maxWidth: '75ch',
-          }
-        }
-      }),
-      animation: {
-        'fade-up': 'fadeUp 0.6s ease forwards',
-        'fade-in': 'fadeIn 0.4s ease forwards',
-        'float': 'float 6s ease-in-out infinite',
-        'shimmer': 'shimmer 2s infinite',
-      },
-      keyframes: {
-        fadeUp: {
-          from: { opacity: '0', transform: 'translateY(24px)' },
-          to:   { opacity: '1', transform: 'translateY(0)' },
+        brand: {
+          50: '#f9f6f5',
+          100: '#f1e8e5',
+          200: '#dfcec8',
+          300: '#caa89f',
+          400: '#b48174',
+          500: '#c05c3c', // Claude-like clay/terracotta accent
+          600: '#a3482c',
+          700: '#843821',
+          800: '#692d1b',
+          900: '#552618',
         },
-        fadeIn: {
-          from: { opacity: '0' },
-          to:   { opacity: '1' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        }
       }
     },
   },

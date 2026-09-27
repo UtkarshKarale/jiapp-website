@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded square background -->
+  <rect x="16" y="16" width="224" height="224" rx="48" fill="#4b4a49" />
+  <!-- Key Icon -->
+  <path d="M164 136a44 44 0 10-62.23-62.23L48 128v36h36v-20h20v-20h20l12-12a43.8 43.8 0 0028 24zM148 92a12 12 0 1116.97-16.97 12 12 0 01-16.97 16.97z" fill="white"/>
+</svg>
