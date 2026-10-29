@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const servicesList = [
+  'Web Application Development',
+  'Custom Software & Desktop Systems',
+  'Mobile Apps (iOS & Android)',
+  'Backend, Cloud & Microservices',
+  'UI/UX Design & Prototyping',
+  'IT Consulting & Code Audits',
+];
+
+const budgetRanges = [
+  '₹50,000 - ₹1,50,000 ($600 - $1,800)',
+  '₹1,50,000 - ₹4,00,000 ($1,800 - $5,000)',
+  '₹4,00,000 - ₹10,00,000 ($5,000 - $12,000)',
+  '₹10,00,000+ ($12,000+)',
+  'Monthly Retainer / Dedicated Pod',
+];
+
+const timelines = [
+  '< 4 Weeks (Rapid MVP)',
+  '1 - 3 Months',
+  '3 - 6 Months',
+  'Long-Term Dedicated Pod',
+];
+---
+
+<Layout
+  title="Hire Us | JiApps IT Services & Dedicated Software Developers"
+  description="Hire JiApp's senior engineering team for web development, offline-first software, mobile apps, and enterprise backends. Direct inquiries at hello@jiapp.online."
+>
+  <main id="main" class="flex-grow">
+
+    <!-- Hero Header -->
+    <section class="max-w-6xl mx-auto px-6 pt-14 md:pt-20 pb-12">
+      <div class="inline-flex items-center gap-2 sticker mb-6 rotate-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span>
+        <span>Let's Build Something Exceptional</span>
+      </div>
+
+      <h1 class="h-mega max-w-4xl mb-7">
+        Hire the JiApp Engineering Team.
+      </h1>
+
+      <p class="text-lg md:text-2xl text-ink-light max-w-3xl leading-relaxed">
+        Whether you are building a new web application from scratch, engineering an offline desktop engine, or expanding your in-house team with dedicated developers, we deliver clean, performant, and reliable software.
+      </p>
+    </section>
+
+    <!-- Main Grid: Inquiry Form & Organization Info -->
+    <section class="max-w-6xl mx-auto px-6 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+      <!-- Form Column -->
+      <div class="lg:col-span-7">
+        <div class="card p-8 md:p-10 !bg-white">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Project Inquiry</h2>
+          <p class="text-ink-light text-sm mb-8">
+            Tell us about your project or team requirements. You'll receive a detailed proposal and technical breakdown within 24 hours.
+          </p>
+
+          <form id="hire-form" class="space-y-6">
+            <!-- Service Type Checkboxes -->
+            <div>
+              <label class="block text-sm font-extrabold mb-3">What services do you need?</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {servicesList.map((service, idx) => (
+                  <label class="flex items-center gap-2.5 p-3 rounded-xl border-2 border-line/20 hover:border-line bg-brand-50/50 cursor-pointer text-sm font-medium transition-colors">
+                    <input type="checkbox" name="services" value={service} class="w-4 h-4 rounded text-brand-500 accent-brand-500" />
+                    <span>{service}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Two Column Inputs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-sm font-bold mb-2">Your Name *</label>
+                <input id="name" name="name" type="text" required class="field" placeholder="Utkarsh Sharma" />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-bold mb-2">Work Email *</label>
+                <input id="email" name="email" type="email" required class="field" placeholder="name@company.com" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="company" class="block text-sm font-bold mb-2">Company / Organization</label>
+                <input id="company" name="company" type="text" class="field" placeholder="Acme Inc or Startup" />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-bold mb-2">Phone / WhatsApp</label>
+                <input id="phone" name="phone" type="tel" class="field" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+
+            <!-- Budget & Timeline -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="budget" class="block text-sm font-bold mb-2">Estimated Budget Range</label>
+                <select id="budget" name="budget" class="field text-sm">
+                  <option value="">Select budget tier...</option>
+                  {budgetRanges.map((b) => (
+                    <option value={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label for="timeline" class="block text-sm font-bold mb-2">Desired Timeline</label>
+                <select id="timeline" name="timeline" class="field text-sm">
+                  <option value="">Select timeline...</option>
+                  {timelines.map((t) => (
+                    <option value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div>
+              <label for="project-details" class="block text-sm font-bold mb-2">Project Overview & Requirements *</label>
+              <textarea
+                id="project-details"
+                name="details"
+                rows="5"
+                required
+                class="field text-sm"
+                placeholder="Briefly describe what you want to build, existing tech stack (if any), target audience, and key goals..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button & Disclaimer -->
+            <div>
+              <button
+                type="submit"
+                id="submit-btn"
+                class="btn btn-lime w-full !text-base !py-3.5 !shadow-[4px_4px_0_var(--color-line)]"
+              >
+                <span>Submit Inquiry &amp; Request Proposal</span>
+                <span>&rarr;</span>
+              </button>
+
+              <div id="form-feedback" class="hidden mt-4 p-4 rounded-xl bg-lime/40 border-2 border-line text-sm font-bold text-ink">
+                Thank you! Your project inquiry has been logged. Our engineering lead will reach out to you directly from <strong class="underline">hello@jiapp.online</strong> within 24 hours.
+              </div>
+
+              <p class="text-xs text-ink-light text-center mt-3">
+                Protected by strict mutual non-disclosure. We never share your data or ideas.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Column: Direct Contact & Assurances -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Direct Email Card -->
+        <div class="card p-8 !bg-brand-500 text-white">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-6 border border-white/20">
+            <svg class="w-6 h-6 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-2xl font-extrabold mb-2">Prefer direct email?</h3>
+          <p class="text-white/80 text-sm mb-4 leading-relaxed">
+            Send us your RFP, project deck, or scope document directly. Our senior architects review every email within 24 hours.
+          </p>
+          <a
+            href="mailto:hello@jiapp.online?subject=Project%20Inquiry%20-%20JiApp%20Services"
+            class="font-mono font-bold text-lime text-lg underline underline-offset-4 hover:text-white transition-colors"
+          >
+            hello@jiapp.online
+          </a>
+        </div>
+
+        <!-- WhatsApp Quick Chat -->
+        <div class="card p-8 !bg-lime">
+          <div class="w-12 h-12 rounded-2xl bg-ink text-white flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-lime" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <h3 class="text-2xl font-extrabold mb-2">Quick Discussion?</h3>
+          <p class="text-ink/80 text-sm mb-4 leading-relaxed">
+            Have a fast query or need an immediate technical consultation? Connect with our project leads directly.
+          </p>
+          <a
+            href="https://wa.me/919876543210?text=Hello%20JiApp%20Team,%20I%20would%20like%20to%20discuss%20a%20project."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-ink text-sm w-full"
+          >
+            Chat on WhatsApp &rarr;
+          </a>
+        </div>
+
+        <!-- Past Client Deliveries Card -->
+        <div class="card p-8 !bg-sun space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-ink bg-white px-2.5 py-0.5 rounded-full border border-line">
+              Proven Track Record
+            </span>
+            <span class="text-xs font-bold text-ink">Recent Clients</span>
+          </div>
+          <h3 class="font-extrabold text-xl">Trusted for Production Systems</h3>
+          <div class="space-y-3 text-sm">
+            <div class="p-3 bg-white/70 rounded-xl border border-line/20">
+              <div class="font-bold text-ink flex items-center justify-between">
+                <span>Devishi Projects Limited</span>
+                <a href="https://www.devishipl.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono underline hover:text-brand-600">devishipl.com &rarr;</a>
+              </div>
+              <p class="text-xs text-ink-light mt-1">Enterprise infrastructure web platform &amp; investor portal.</p>
+            </div>
+            <div class="p-3 bg-white/70 rounded-xl border border-line/20">
+              <div class="font-bold text-ink flex items-center justify-between">
+                <span>CareMate Mobile App</span>
+                <span class="text-xs font-mono bg-sky px-1.5 py-0.5 rounded">iOS &amp; Android</span>
+              </div>
+              <p class="text-xs text-ink-light mt-1">Healthcare vitals monitoring &amp; caregiver coordination mobile app.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guarantees Card -->
+        <div class="card p-8 !bg-white space-y-4">
+          <h3 class="font-extrabold text-xl mb-2">What Working With Us Looks Like</h3>
+          <ul class="space-y-3 text-sm text-ink-light">
+            <li class="flex items-start gap-2.5">
+              <span class="text-brand-500 font-extrabold">&#10003;</span>
+              <span><strong>100% Code &amp; IP Ownership</strong> transferred to you upon completion.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brand-500 font-extrabold">&#10003;</span>
+              <span><strong>Direct Engineering Contact</strong> via dedicated Slack/Discord channel.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brand-500 font-extrabold">&#10003;</span>
+              <span><strong>Fortnightly Demo Releases</strong> so you inspect real progress continually.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-brand-500 font-extrabold">&#10003;</span>
+              <span><strong>30-Day Free Warranty</strong> for bug fixes and launch stabilization.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Accordions -->
+    <section class="max-w-4xl mx-auto px-6 py-12">
+      <h2 class="h-page text-center mb-10">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="faq">
+          <summary>How quickly can your team kick off our project?</summary>
+          <p>
+            Typically, once requirements are clarified and the agreement is signed, discovery and design kick off within 3 to 5 business days. For dedicated engineering pods, onboarding happens within one week.
+          </p>
+        </details>
+        <details class="faq">
+          <summary>Do you work with startups, agencies, and international clients?</summary>
+          <p>
+            Yes! We work with clients across India, North America, Europe, and the Middle East. We support payments in INR via UPI/NEFT/Bank Transfer and international wire (USD/EUR) via Stripe or direct SWIFT.
+          </p>
+        </details>
+        <details class="faq">
+          <summary>Who owns the intellectual property and source code?</summary>
+          <p>
+            You own 100% of all code, database schemas, Figma files, and project assets. We commit directly to your private GitHub or GitLab repository.
+          </p>
+        </details>
+        <details class="faq">
+          <summary>Can we hire individual developers instead of a full team?</summary>
+          <p>
+            Yes. Through our Dedicated Pod model, you can hire a dedicated full-stack engineer, frontend developer, or backend engineer who reports to your product manager daily.
+          </p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const form = document.getElementById('hire-form') as HTMLFormElement | null;
+    const feedback = document.getElementById('form-feedback');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (feedback && submitBtn) {
+        submitBtn.setAttribute('disabled', 'true');
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        feedback.classList.remove('hidden');
+        form.reset();
+      }
+    });
+  </script>
+</Layout>

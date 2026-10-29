@@ -1,0 +1,227 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const roles = [
+  {
+    title: 'Full-Stack Software Engineer',
+    type: 'Full-Time / Remote',
+    experience: '2 - 5 Years',
+    department: 'Web & Client Services',
+    tags: ['TypeScript', 'Astro / Next.js', 'React', 'Node.js', 'PostgreSQL'],
+    description:
+      'Lead end-to-end web application development for client projects and internal SaaS portals. You will architect robust frontends and backend services with a strict focus on speed, accessibility, and clean component structures.',
+  },
+  {
+    title: 'Senior Backend Engineer (Spring Boot / Java)',
+    type: 'Full-Time / Hybrid',
+    experience: '3 - 6 Years',
+    department: 'Enterprise Architecture',
+    tags: ['Spring Boot', 'Java / Kotlin', 'PostgreSQL', 'Docker', 'Microservices'],
+    description:
+      'Design high-throughput APIs, data synchronization pipelines, and secure cloud microservices. Experience with transactional consistency, caching strategies, and multi-tenant architectures is ideal.',
+  },
+  {
+    title: 'Desktop & POS Systems Engineer',
+    type: 'Full-Time / Onsite or Remote',
+    experience: '2 - 4 Years',
+    department: 'Products (BillZ)',
+    tags: ['Electron', 'SQLite', 'C++ / Rust bindings', 'Hardware Peripherals'],
+    description:
+      'Build and optimize our offline-first retail engine. You will work on local SQLite synchronization, thermal printing (ESC/POS protocol), barcode hardware integration, and multi-counter LAN architectures.',
+  },
+  {
+    title: 'UI/UX & Design Systems Lead',
+    type: 'Full-Time / Contract',
+    experience: '2 - 5 Years',
+    department: 'Product Design',
+    tags: ['Figma', 'Design Systems', 'Prototyping', 'User Research'],
+    description:
+      'Shape the look, feel, and ergonomic design of both consumer-facing web apps and high-speed cashier checkout screens. You will establish scalable design tokens and conduct usability testing with actual merchants.',
+  },
+  {
+    title: 'Engineering Intern / Junior Developer',
+    type: 'Internship / Full-Time Conversion',
+    experience: '0 - 1 Year',
+    department: 'Engineering Guild',
+    tags: ['JavaScript', 'TypeScript', 'Git', 'Passion for Problem Solving'],
+    description:
+      'We welcome hungry, passionate builders. You will write production code from week one under the direct mentorship of our senior architects. Show us your personal projects, GitHub commits, or side hacks.',
+  },
+];
+
+const perks = [
+  {
+    title: 'Autonomy & Zero Red Tape',
+    desc: 'We are engineers, not bureaucrats. No endless approval chains or pointless meetings.',
+    color: 'bg-lime text-ink',
+  },
+  {
+    title: 'Modern, Battle-Tested Stack',
+    desc: 'Work with the latest TypeScript, Astro, Spring Boot, Electron, and cutting-edge tools.',
+    color: 'bg-sky text-ink',
+  },
+  {
+    title: 'Real World Impact',
+    desc: 'Your code powers real storefronts and businesses processing thousands of daily transactions.',
+    color: 'bg-pop/30 text-ink',
+  },
+  {
+    title: 'Competitive Compensation',
+    desc: 'Fair market salaries, performance bonuses, and transparent career progression.',
+    color: 'bg-brand-500 text-white',
+  },
+];
+---
+
+<Layout
+  title="Careers at JiApps | Join Our Engineering Organization"
+  description="Build software that matters. Explore engineering, design, and product roles at JiApps. Apply directly to hello@jiapp.online."
+>
+  <main id="main" class="flex-grow">
+
+    <!-- Header Section -->
+    <section class="max-w-6xl mx-auto px-6 pt-14 md:pt-20 pb-12">
+      <div class="inline-flex items-center gap-2 sticker mb-6 rotate-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+        <span>We Are Hiring Ambitious Builders</span>
+      </div>
+
+      <h1 class="h-mega max-w-4xl mb-7">
+        Do the best work of your career at JiApp.
+      </h1>
+
+      <p class="text-lg md:text-2xl text-ink-light max-w-3xl leading-relaxed">
+        We are an engineering-driven organization building proprietary retail tech like BillZ POS and delivering elite custom software solutions for clients. If you care deeply about software craftsmanship, performance, and real business impact, you will thrive here.
+      </p>
+    </section>
+
+    <!-- Perks & Culture Grid -->
+    <section class="max-w-6xl mx-auto px-6 py-10">
+      <h2 class="h-page mb-10">Why Engineers Love JiApp</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {perks.map((perk) => (
+          <div class={`card p-8 flex flex-col justify-between ${perk.color}`}>
+            <h3 class="text-2xl font-extrabold mb-3 leading-snug">{perk.title}</h3>
+            <p class="text-sm leading-relaxed opacity-85">{perk.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Open Roles List -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="chip mb-2">Open Positions</span>
+          <h2 class="h-page mt-2">Current Opportunities</h2>
+        </div>
+        <p class="text-ink-light max-w-md text-sm">
+          Don't see your exact role? Email us anyway at <a href="mailto:hello@jiapp.online" class="font-bold underline text-ink">hello@jiapp.online</a> with what you can build.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        {roles.map((role) => (
+          <div class="card p-8 md:p-10 !bg-white hover:-translate-y-1 transition-transform">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+              <div>
+                <div class="flex flex-wrap items-center gap-3 mb-2">
+                  <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 bg-brand-100 px-3 py-1 rounded-full border border-line">
+                    {role.department}
+                  </span>
+                  <span class="text-xs font-semibold text-ink-light">
+                    {role.type} &bull; {role.experience}
+                  </span>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-extrabold">{role.title}</h3>
+              </div>
+
+              <div>
+                <a
+                  href={`mailto:hello@jiapp.online?subject=Application%3A%20${encodeURIComponent(role.title)}&body=Hi%20JiApp%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20${encodeURIComponent(role.title)}%20position.%0A%0AMy%20Portfolio%2FGitHub%3A%20%0AMy%20Resume%20Link%3A%20%0ABrief%20Note%3A%20`}
+                  class="btn btn-lime !text-sm whitespace-nowrap"
+                >
+                  <span>Apply for this Role</span>
+                  <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+
+            <p class="text-ink-light text-base leading-relaxed mb-6">
+              {role.description}
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t-2 border-line/10">
+              {role.tags.map((tag) => (
+                <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-brand-50 border border-line/20 text-ink">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Application Process Banner -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="card p-8 md:p-14 !bg-ink text-white">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <span class="sticker !bg-lime text-ink mb-4 inline-block">Direct &amp; Fast Process</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4">
+              How Our Hiring Process Works
+            </h2>
+            <p class="text-white/80 leading-relaxed text-base mb-6">
+              We respect your time. No multi-month interview loops or irrelevant puzzle questions.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="w-8 h-8 rounded-full bg-lime text-ink font-extrabold flex items-center justify-center shrink-0">1</span>
+                <div>
+                  <h4 class="font-bold text-base text-white">Direct Application Review</h4>
+                  <p class="text-white/70 text-sm">Send your resume or GitHub link to hello@jiapp.online. Reviewed within 48 hours.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="w-8 h-8 rounded-full bg-lime text-ink font-extrabold flex items-center justify-center shrink-0">2</span>
+                <div>
+                  <h4 class="font-bold text-base text-white">Technical Deep Dive (30-45 mins)</h4>
+                  <p class="text-white/70 text-sm">A conversation with a lead engineer about real code you wrote and architectural decisions.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="w-8 h-8 rounded-full bg-lime text-ink font-extrabold flex items-center justify-center shrink-0">3</span>
+                <div>
+                  <h4 class="font-bold text-base text-white">Practical Project / Paid Trial</h4>
+                  <p class="text-white/70 text-sm">A paid, practical mini-project reflecting real work—not generic whiteboard trivia.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="w-8 h-8 rounded-full bg-lime text-ink font-extrabold flex items-center justify-center shrink-0">4</span>
+                <div>
+                  <h4 class="font-bold text-base text-white">Offer Letter</h4>
+                  <p class="text-white/70 text-sm">Clear compensation, equity/bonus structure, and onboarding date.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-8 !bg-brand-500 text-white text-center">
+            <h3 class="text-2xl font-extrabold mb-3">Ready to Join?</h3>
+            <p class="text-white/85 text-sm mb-6 leading-relaxed">
+              Email your resume, LinkedIn, GitHub, or portfolio directly to our engineering leadership.
+            </p>
+            <a
+              href="mailto:hello@jiapp.online?subject=General%20Application%20-%20JiApp%20Careers"
+              class="btn btn-lime !text-base !py-3.5 !px-8 w-full text-center"
+            >
+              Email hello@jiapp.online &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>

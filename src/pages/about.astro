@@ -1,43 +1,239 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Marquee from '../components/ui/Marquee.astro';
+
+const orgTicker = [
+  'Dual Profile Organization',
+  'Proprietary Products: BillZ POS',
+  'Custom Web & App Development',
+  'Spring Boot & Node.js Engineering',
+  '100% Source Code Ownership',
+  'Serving Startups & Retailers',
+  'Direct Contact: hello@jiapp.online',
+];
 ---
 
-<Layout title="About | JiApps">
-  <main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 relative">
-    
-    <!-- Background pattern -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8b8a891a_1px,transparent_1px),linear-gradient(to_bottom,#8b8a891a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-10"></div>
-    
-    <div class="max-w-4xl mx-auto text-center space-y-8 mt-12 w-full">
-      <h1 class="font-display text-6xl md:text-7xl font-extrabold text-ink tracking-tight">
-        Building for the <br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">Indian retailer.</span>
-      </h1>
-      <p class="text-xl md:text-2xl text-ink-light font-body max-w-2xl mx-auto mb-16">
-        JiApps was founded with a single mission: to provide fast, reliable, and affordable technology to businesses that have been ignored by Silicon Valley.
-      </p>
-    </div>
+<Layout
+  title="About Us | JiApps Organization & Engineering Studio"
+  description="Learn about JiApps: a dual-profile technology organization building specialized software products and providing full-cycle custom IT & web development services."
+>
+  <main id="main" class="flex-grow">
 
-    <!-- Our Story -->
-    <div class="max-w-4xl mx-auto w-full border border-border bg-surface p-12 rounded-3xl shadow-sm mt-12">
-      <div class="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-headings:text-ink prose-p:text-ink-light prose-strong:text-ink max-w-none">
-        <h2>The Problem with Modern SaaS</h2>
-        <p>
-          Over the last decade, software has moved entirely to the cloud. While this works great for tech startups with gigabit internet, it's a nightmare for a busy garment store in a tier-2 Indian city. Network drops mean lost sales. Cloud databases mean recurring monthly "tax" just to access your own inventory.
-        </p>
-        
-        <h2>The JiApps Approach</h2>
-        <p>
-          We believe in <strong>Offline-First Architecture</strong>. We build native applications that leverage the full power of your local hardware. Whether you're running our flagship POS system, BillZ, or our unified Accounts ecosystem, you can be certain that your software will work at the speed of light—with or without an internet connection.
-        </p>
-        
-        <h2>Our Values</h2>
-        <ul>
-          <li><strong>Speed over everything:</strong> A checkout should take 2 seconds, not 20.</li>
-          <li><strong>Data Sovereignty:</strong> Your data lives on your machine.</li>
-          <li><strong>Zero Cloud Tax:</strong> We prefer fair, lifetime pricing models over endless subscriptions.</li>
-        </ul>
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-6 pt-14 md:pt-20 pb-12">
+      <div class="inline-flex items-center gap-2 sticker mb-6 rotate-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span>
+        <span>Organization Profile</span>
       </div>
-    </div>
+
+      <h1 class="h-mega max-w-4xl mb-7">
+        Crafting specialized software &amp; elite digital solutions.
+      </h1>
+
+      <p class="text-lg md:text-2xl text-ink-light max-w-3xl leading-relaxed">
+        JiApps is an Indian technology organization founded with a clear dual purpose: to build specialized, offline-first business products for ignored markets, and to provide high-caliber custom software, web, and IT engineering services for ambitious companies globally.
+      </p>
+    </section>
+
+    <!-- Ticker Strip -->
+    <Marquee items={orgTicker} />
+
+    <!-- Two Pillars Section -->
+    <section class="max-w-6xl mx-auto px-6 pt-20 pb-12">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="chip mb-3">Our Core Identity</span>
+        <h2 class="h-page mt-2 mb-4">Two Strong Profiles, One Engineering Standard</h2>
+        <p class="text-ink-light text-lg">
+          We operate simultaneously as a product laboratory and a premier software development partner.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Pillar 1: Products -->
+        <article class="card p-8 md:p-12 !bg-brand-500 text-white flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="sticker !bg-lime text-ink rotate-0">Pillar 01</span>
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-white/80">Proprietary Software</span>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
+              JiApps Products: BillZ POS &amp; Business Ecosystem
+            </h3>
+            <p class="text-white/85 text-base leading-relaxed mb-6">
+              We engineer specialized business tools like <strong class="text-white underline">BillZ POS</strong>—an offline-first, high-speed point of sale system for Indian retailers with zero cloud taxes, barcode scanner support, multi-counter LAN synchronization, and automated WhatsApp receipts.
+            </p>
+            <ul class="space-y-2.5 text-sm text-white/90 mb-8">
+              <li class="flex items-center gap-2">✓ Offline-first architecture (works with 0% internet)</li>
+              <li class="flex items-center gap-2">✓ Unified identity through JiApps Accounts</li>
+              <li class="flex items-center gap-2">✓ Fair, transparent lifetime &amp; annual pricing</li>
+            </ul>
+          </div>
+          <div class="flex gap-4">
+            <a href="/billz" class="btn btn-lime !text-sm">Explore BillZ POS &rarr;</a>
+            <a href="/pricing" class="btn !bg-white/10 text-white border-white/20 hover:bg-white/20 !text-sm">View Pricing</a>
+          </div>
+        </article>
+
+        <!-- Pillar 2: IT Services -->
+        <article class="card p-8 md:p-12 !bg-lime text-ink flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="sticker !bg-ink text-white rotate-0">Pillar 02</span>
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-ink/80">Client Solutions</span>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
+              JiApp IT Services: Full-Cycle Software Development
+            </h3>
+            <p class="text-ink/85 text-base leading-relaxed mb-6">
+              We help external organizations, startups, and enterprises turn their product visions into production-ready software. From custom web portals and mobile applications to enterprise Spring Boot microservices, we deliver battle-hardened code.
+            </p>
+            <ul class="space-y-2.5 text-sm text-ink/90 font-medium mb-8">
+              <li class="flex items-center gap-2">✓ Custom Web &amp; Mobile App Development</li>
+              <li class="flex items-center gap-2">✓ 100% intellectual property &amp; source code ownership</li>
+              <li class="flex items-center gap-2">✓ Dedicated engineering pods &amp; milestone contracts</li>
+            </ul>
+          </div>
+          <div class="flex gap-4">
+            <a href="/services" class="btn btn-ink !text-sm">Our IT Services &rarr;</a>
+            <a href="/hire-us" class="btn !bg-white !text-ink !text-sm">Hire Our Team</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Proven Client Work Strip -->
+      <div class="mt-12 card p-8 !bg-white">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <span class="chip mb-2">Client Portfolio</span>
+            <h3 class="text-2xl font-extrabold">Selected Client Partners &amp; Deliveries</h3>
+          </div>
+          <a href="/services" class="btn btn-lime !text-xs !py-2 !px-4">Explore Client Services &rarr;</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-brand-50 border-2 border-line/20">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-bold text-lg text-ink">Devishi Projects &amp; Infrastructure</h4>
+              <a href="https://www.devishipl.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono font-bold text-brand-600 underline">devishipl.com</a>
+            </div>
+            <p class="text-xs text-ink-light leading-relaxed">
+              Designed and deployed their corporate digital architecture, infrastructure project showcase, and investor portal on Cloudflare global edge.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-sky/30 border-2 border-line/20">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-bold text-lg text-ink">CareMate Mobile App</h4>
+              <span class="text-xs font-mono bg-white px-2 py-0.5 rounded font-bold border border-line/30">Mobile Healthcare</span>
+            </div>
+            <p class="text-xs text-ink-light leading-relaxed">
+              Engineered cross-platform mobile app for patient vitals tracking, caregiver scheduling, medication reminders, and emergency SOS alerts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why We Are Different: The Problem with Modern Software -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-8 items-stretch">
+        <article class="card p-8 md:p-10 !bg-white">
+          <div class="icon-tile mb-6 !bg-pop/20">
+            <svg class="w-6 h-6 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <h2 class="text-3xl font-extrabold mb-4">The Problem We Solve</h2>
+          <p class="text-ink-light leading-relaxed text-base">
+            Over the last decade, corporate software transitioned entirely to bloated cloud subscriptions and heavy frameworks that demand continuous high-speed internet. While this suits tech firms in metropolitan hubs, it fails busy businesses in tier-2 and tier-3 cities where internet cuts halt cash registers and operations.
+          </p>
+          <p class="text-ink-light leading-relaxed text-base mt-4">
+            Furthermore, companies seeking development agencies frequently face bloated contracts, outsourced juniors, and poor communication. We established JiApps to offer an honest, engineer-led alternative.
+          </p>
+        </article>
+
+        <article class="card p-8 md:p-10 !bg-sky">
+          <div class="icon-tile mb-6 !bg-white">
+            <svg class="w-6 h-6 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h2 class="text-3xl font-extrabold mb-4">The JiApps Standard</h2>
+          <p class="text-ink/80 leading-relaxed text-base">
+            We build software that is fast, resilient, and honest. We believe in:
+          </p>
+          <ul class="space-y-3 mt-4 text-sm font-medium">
+            <li class="flex items-start gap-2.5">
+              <span class="font-extrabold text-brand-700">✓</span>
+              <span><strong>Hardware Sovereignty:</strong> Software should run on the machine you bought, not be throttled by an external server.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-extrabold text-brand-700">✓</span>
+              <span><strong>Zero Cloud Tax:</strong> We reject unnecessary recurring cloud fees for local computing tasks.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-extrabold text-brand-700">✓</span>
+              <span><strong>Transparent Partnerships:</strong> When we build for clients, they own 100% of their intellectual property with zero lock-in.</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="max-w-6xl mx-auto px-6 py-12">
+      <h2 class="h-page mb-10">Our Engineering Values</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card p-8 !bg-lime">
+          <h3 class="text-2xl font-extrabold mb-2">Speed Over Everything</h3>
+          <p class="text-ink/80 leading-relaxed text-sm">
+            A checkout or page load should take milliseconds, not seconds. We optimize rendering cycles, SQL queries, and bundle sizes with obsessive care.
+          </p>
+        </div>
+        <div class="card p-8 !bg-sun">
+          <h3 class="text-2xl font-extrabold mb-2">Data Sovereignty</h3>
+          <p class="text-ink/80 leading-relaxed text-sm">
+            Your data lives on your disk. You own your databases, your logs, and your source code without proprietary hurdles.
+          </p>
+        </div>
+        <div class="card p-8 !bg-pop/30">
+          <h3 class="text-2xl font-extrabold mb-2">Engineer-Led Delivery</h3>
+          <p class="text-ink/80 leading-relaxed text-sm">
+            No endless sales middlemen. Clients and users speak directly with software architects who design and write the code.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organization Details Card -->
+    <section class="max-w-6xl mx-auto px-6 pt-12 pb-20">
+      <div class="card p-8 md:p-12 !bg-white">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b-2 border-line">
+          <div>
+            <span class="chip mb-2">Official Entity</span>
+            <h3 class="text-3xl font-extrabold">JiApps Organization</h3>
+            <p class="text-ink-light text-sm mt-1">Specialized Software Products &amp; IT Solutions Provider</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="mailto:hello@jiapp.online" class="btn btn-lime text-sm">hello@jiapp.online</a>
+            <a href="/hire-us" class="btn text-sm">Hire Our Team</a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-8 text-sm">
+          <div>
+            <h4 class="font-bold text-ink-light mb-1">Headquarters</h4>
+            <p class="font-bold">India (Distributed Worldwide)</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-ink-light mb-1">Primary Email</h4>
+            <p class="font-bold font-mono">hello@jiapp.online</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-ink-light mb-1">Client Services</h4>
+            <p class="font-bold">Web, Mobile, Cloud, Desktop</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-ink-light mb-1">Flagship Products</h4>
+            <p class="font-bold">BillZ POS, JiApps Accounts</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </Layout>

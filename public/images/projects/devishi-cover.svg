@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="devishiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c6f432" />
+      <stop offset="100%" stop-color="#8fd8ff" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#devishiGrad)" rx="24"/>
+  <circle cx="700" cy="80" r="140" fill="#ffffff" opacity="0.03"/>
+  <circle cx="100" cy="420" r="180" fill="#ffffff" opacity="0.03"/>
+  
+  <!-- Grid lines -->
+  <path d="M 0 100 L 800 100 M 0 200 L 800 200 M 0 300 L 800 300 M 0 400 L 800 400" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2"/>
+  <path d="M 150 0 L 150 500 M 300 0 L 300 500 M 450 0 L 450 500 M 600 0 L 600 500" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2"/>
+  
+  <!-- Badge -->
+  <rect x="70" y="70" width="160" height="36" rx="18" fill="#c6f432"/>
+  <text x="150" y="93" fill="#17112b" font-family="system-ui, sans-serif" font-weight="800" font-size="14" text-anchor="middle">CLIENT PROJECT</text>
+  
+  <!-- Content -->
+  <text x="70" y="170" fill="#ffffff" font-family="system-ui, sans-serif" font-weight="900" font-size="44" letter-spacing="-1">Devishi IPL</text>
+  <text x="70" y="220" fill="url(#accentGrad)" font-family="system-ui, sans-serif" font-weight="700" font-size="24">Corporate Infrastructure Web Platform</text>
+  <text x="70" y="270" fill="#cbd5e1" font-family="system-ui, sans-serif" font-weight="400" font-size="18">Enterprise architecture, interactive portfolio &amp; investor portal</text>
+  
+  <!-- Tags -->
+  <rect x="70" y="340" width="110" height="34" rx="10" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+  <text x="125" y="362" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Web Platform</text>
+  
+  <rect x="195" y="340" width="100" height="34" rx="10" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+  <text x="245" y="362" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">React / Next</text>
+  
+  <rect x="310" y="340" width="100" height="34" rx="10" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+  <text x="360" y="362" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Cloudflare</text>
+  
+  <!-- URL -->
+  <text x="70" y="440" fill="#c6f432" font-family="monospace" font-size="16" font-weight="700">www.devishipl.com &rarr;</text>
+</svg>

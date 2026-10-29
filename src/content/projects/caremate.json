@@ -1,0 +1,25 @@
+{
+  "title": "CareMate Mobile App",
+  "slug": "caremate",
+  "description": "Patient healthcare monitoring, caregiver coordination, vital tracking, and tele-consultation mobile application.",
+  "longDescription": "CareMate is a full-featured mobile healthcare ecosystem built to bridge patients, caregivers, and medical practitioners. The mobile app enables real-time vitals tracking (heart rate, blood pressure, glucose levels, oxygen saturation), daily medicine reminders, emergency caregiver SOS alerts with GPS coordinates, and encrypted tele-consultations. Built with Flutter and native Kotlin modules to ensure seamless bluetooth medical device pairing and offline data caching.",
+  "category": "playstore",
+  "coverImage": "/images/projects/caremate-cover.svg",
+  "galleryImages": [],
+  "technologies": ["Flutter", "Kotlin", "Firebase", "Node.js", "WebSockets", "REST APIs"],
+  "features": [
+    "Real-time patient vitals logging and interactive trend charts",
+    "Medicine adherence reminders & caregiver push notifications",
+    "One-tap Emergency SOS with live location broadcasting",
+    "Offline-first architecture for rural and low-connectivity zones",
+    "Encrypted doctor-patient messaging & tele-consultation portal",
+    "Role-based access controls for family members and nurses"
+  ],
+  "status": "live",
+  "featured": true,
+  "createdDate": "2024-08-15",
+  "stats": {
+    "users": "15K+ Active",
+    "rating": "4.8"
+  }
+}

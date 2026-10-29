@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <rect width="800" height="500" fill="#1e1b4b" rx="24"/>
+  <text x="70" y="220" fill="#c6f432" font-family="system-ui, sans-serif" font-weight="900" font-size="44">LokSetu</text>
+  <text x="70" y="270" fill="#ffffff" font-family="system-ui, sans-serif" font-weight="600" font-size="20">Civic Engagement &amp; Grievance Platform</text>
+</svg>

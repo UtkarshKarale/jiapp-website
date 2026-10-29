@@ -1,91 +1,249 @@
 ---
 import '../styles/global.css';
-const { title = "JiApps | Specialized Tools for Business" } = Astro.props;
+const {
+  title = "JiApps | Specialized Software Products & IT Development Services",
+  description = "JiApps builds specialized business software like BillZ POS and provides end-to-end web development, custom software, and IT engineering services.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#6c47ff" />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-background text-ink font-body antialiased selection:bg-brand-100 selection:text-brand-900 min-h-screen flex flex-col">
-    
+  <body class="font-body antialiased min-h-screen flex flex-col">
+
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] btn btn-lime">Skip to content</a>
+
     <!-- Navigation -->
-    <nav class="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50">
-      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2">
-          <div class="w-6 h-6 bg-ink rounded-sm flex items-center justify-center">
-            <span class="text-white text-xs font-bold font-display">Ji</span>
+    <header class="sticky top-0 z-50 bg-background/90 backdrop-blur border-b-2 border-line">
+      <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-[4.5rem] flex items-center justify-between" aria-label="Main">
+        <!-- Brand Logo -->
+        <a href="/" class="flex items-center gap-2.5 group">
+          <span class="w-9 h-9 bg-brand-500 border-2 border-line rounded-xl flex items-center justify-center shadow-[3px_3px_0_var(--color-line)] -rotate-6 group-hover:rotate-0 transition-transform">
+            <span class="text-white text-sm font-extrabold font-display">Ji</span>
+          </span>
+          <div class="flex flex-col leading-tight">
+            <span class="font-display font-extrabold text-xl tracking-tight">JiApps</span>
+            <span class="text-[10px] font-bold text-ink-light tracking-wide uppercase">Products &bull; Services</span>
           </div>
-          <span class="font-display font-medium text-lg tracking-tight">JiApps</span>
         </a>
-        <div class="flex items-center gap-6 text-sm font-medium">
-          <a href="/#products" class="text-ink-light hover:text-brand-600 transition-colors">Products</a>
-          <a href="/pricing" class="text-ink-light hover:text-brand-600 transition-colors">Pricing</a>
-          <a href="https://accounts.jiapp.online" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl transition-colors shadow-sm">Sign in</a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-bold">
+          <a
+            href="/services"
+            class={`px-3 py-2 rounded-full transition-colors ${currentPath.startsWith('/services') ? 'bg-brand-500 text-white shadow-[2px_2px_0_var(--color-line)]' : 'hover:bg-brand-100'}`}
+          >
+            Services
+          </a>
+          <a
+            href="/#products"
+            class="px-3 py-2 rounded-full hover:bg-brand-100 transition-colors"
+          >
+            Products
+          </a>
+          <a
+            href="/pricing"
+            class={`px-3 py-2 rounded-full transition-colors ${currentPath.startsWith('/pricing') ? 'bg-brand-500 text-white shadow-[2px_2px_0_var(--color-line)]' : 'hover:bg-brand-100'}`}
+          >
+            Pricing
+          </a>
+          <a
+            href="/about"
+            class={`px-3 py-2 rounded-full transition-colors ${currentPath.startsWith('/about') ? 'bg-brand-500 text-white shadow-[2px_2px_0_var(--color-line)]' : 'hover:bg-brand-100'}`}
+          >
+            About
+          </a>
+          <a
+            href="/blog"
+            class={`px-3 py-2 rounded-full transition-colors ${currentPath.startsWith('/blog') ? 'bg-brand-500 text-white shadow-[2px_2px_0_var(--color-line)]' : 'hover:bg-brand-100'}`}
+          >
+            Blog
+          </a>
+          <a
+            href="/contact"
+            class={`px-3 py-2 rounded-full transition-colors ${currentPath.startsWith('/contact') ? 'bg-brand-500 text-white shadow-[2px_2px_0_var(--color-line)]' : 'hover:bg-brand-100'}`}
+          >
+            Contact
+          </a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="/hire-us" class="btn btn-lime !py-1.5 !px-3.5 !text-xs sm:!text-sm !shadow-[3px_3px_0_var(--color-line)]">
+            <span>Hire Us</span>
+            <span class="hidden sm:inline">&rarr;</span>
+          </a>
+          <a href="https://accounts.jiapp.online" class="hidden sm:inline-flex btn !py-1.5 !px-3.5 !text-xs sm:!text-sm !shadow-[3px_3px_0_var(--color-line)] bg-white">
+            Sign in
+          </a>
+
+          <!-- Mobile Toggle Button -->
+          <button
+            id="mobile-nav-toggle"
+            class="lg:hidden w-10 h-10 rounded-xl border-2 border-line bg-white flex items-center justify-center shadow-[2px_2px_0_var(--color-line)]"
+            aria-label="Toggle navigation menu"
+          >
+            <svg id="hamburger-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Dropdown -->
+      <div id="mobile-nav-menu" class="hidden lg:hidden border-t-2 border-line bg-background px-6 py-6 shadow-xl">
+        <div class="flex flex-col gap-3 font-bold text-base">
+          <a href="/services" class="p-2 rounded-xl hover:bg-brand-100 flex items-center justify-between">
+            <span>Services (Web, Apps & IT)</span>
+            <span class="text-xs bg-lime px-2 py-0.5 rounded-full border border-line">Hire</span>
+          </a>
+          <a href="/#products" class="p-2 rounded-xl hover:bg-brand-100">Products (BillZ & Accounts)</a>
+          <a href="/pricing" class="p-2 rounded-xl hover:bg-brand-100">Pricing</a>
+          <a href="/about" class="p-2 rounded-xl hover:bg-brand-100">About JiApp</a>
+          <a href="/careers" class="p-2 rounded-xl hover:bg-brand-100">Careers</a>
+          <a href="/blog" class="p-2 rounded-xl hover:bg-brand-100">Blog</a>
+          <a href="/contact" class="p-2 rounded-xl hover:bg-brand-100">Contact Us</a>
+          <div class="pt-3 border-t-2 border-line flex flex-col gap-2">
+            <a href="/hire-us" class="btn btn-lime w-full text-center">Hire Our Team</a>
+            <a href="https://accounts.jiapp.online" class="btn w-full text-center">Sign In to Accounts</a>
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
 
     <slot />
 
     <!-- Footer -->
-    <footer class="border-t border-border bg-surface py-20 px-6 mt-12">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
-        
-        <!-- About Section -->
-        <div class="md:col-span-2 space-y-4">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-5 h-5 bg-ink rounded-sm flex items-center justify-center">
-              <span class="text-white text-[10px] font-bold font-display">Ji</span>
+    <footer class="bg-ink text-white mt-24 border-t-2 border-line">
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 text-sm">
+
+        <!-- Column 1 & 2: Organization Profile -->
+        <div class="lg:col-span-2 space-y-5">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 bg-lime text-ink rounded-xl flex items-center justify-center -rotate-6 font-display font-extrabold text-base border-2 border-line">
+              Ji
+            </span>
+            <div class="leading-none">
+              <span class="font-display font-extrabold text-2xl tracking-tight">JiApps</span>
+              <p class="text-xs text-lime font-mono mt-1 font-bold">Organization &bull; Products &bull; IT Services</p>
             </div>
-            <span class="font-display font-medium text-lg tracking-tight">JiApps</span>
           </div>
-          <p class="text-ink-light leading-relaxed max-w-sm">
-            JiApps builds specialized software and operational tools to help businesses run faster, smarter, and with complete control.
+          <p class="text-white/75 leading-relaxed max-w-sm text-sm">
+            JiApps operates on two strong fronts: developing proprietary software products (like BillZ POS) and engineering world-class custom web, mobile, and enterprise IT solutions for businesses worldwide.
           </p>
-          <div class="pt-2">
-            <a href="/about" class="text-brand-600 hover:text-brand-700 font-medium text-sm">Read our story &rarr;</a>
+          <div class="pt-2 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-white/90">
+              <span class="text-lime">✉</span>
+              <a href="mailto:hello@jiapp.online" class="font-mono font-bold hover:text-lime transition-colors">hello@jiapp.online</a>
+            </div>
+            <div class="flex items-center gap-2 text-white/70 text-xs">
+              <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
+              <span>Accepting new client projects & inquiries</span>
+            </div>
+          </div>
+          <div class="pt-3 flex flex-wrap gap-2">
+            <a href="/hire-us" class="btn btn-lime !py-2 !px-4 !text-xs !shadow-[3px_3px_0_var(--color-brand-400)] text-ink">Hire Us for Projects</a>
+            <a href="/about" class="btn !py-2 !px-4 !text-xs !shadow-[3px_3px_0_rgba(255,255,255,0.2)] bg-ink border-white/20 text-white hover:bg-white/10">Organization Story</a>
           </div>
         </div>
 
-        <!-- Services -->
+        <!-- Column 3: IT Services Profile -->
         <div class="space-y-4">
-          <h4 class="font-medium text-ink">Products</h4>
-          <ul class="space-y-3 text-ink-light">
-            <li><a href="/billz" class="hover:text-brand-600 transition-colors">BillZ POS</a></li>
-            <li><a href="/accounts" class="hover:text-brand-600 transition-colors">JiApps Accounts</a></li>
+          <h4 class="font-bold text-lime text-base flex items-center gap-2">
+            <span>IT Services</span>
+            <span class="bg-lime/20 text-lime text-[10px] px-2 py-0.5 rounded-full uppercase">Agency</span>
+          </h4>
+          <ul class="space-y-2.5 text-white/75 text-sm">
+            <li><a href="/services#web" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Web Development</a></li>
+            <li><a href="/services#custom" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Custom Software</a></li>
+            <li><a href="/services#mobile" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Mobile Applications</a></li>
+            <li><a href="/services#cloud" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Cloud & Backend APIs</a></li>
+            <li><a href="/services#consulting" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">IT Consulting & Audits</a></li>
+            <li><a href="/hire-us" class="hover:text-lime font-bold inline-flex items-center gap-1 text-white">Hire Developers &rarr;</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Products Profile -->
+        <div class="space-y-4">
+          <h4 class="font-bold text-lime text-base flex items-center gap-2">
+            <span>Products</span>
+            <span class="bg-sun/20 text-sun text-[10px] px-2 py-0.5 rounded-full uppercase">Software</span>
+          </h4>
+          <ul class="space-y-2.5 text-white/75 text-sm">
+            <li><a href="/billz" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">BillZ POS</a></li>
+            <li><a href="/accounts" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">JiApps Accounts</a></li>
             <li>
-              <a href="/pricing" class="hover:text-brand-600 transition-colors group flex items-center gap-2">
+              <a href="/pricing" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime inline-flex items-center gap-2">
                 Pricing
-                <span class="bg-brand-50 text-brand-600 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">7 Days Free</span>
+                <span class="bg-sun text-ink text-[10px] font-extrabold px-1.5 py-0.5 rounded-full -rotate-3">7D FREE</span>
               </a>
             </li>
+            <li><a href="/billz#features" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Hardware Support</a></li>
+            <li><a href="https://accounts.jiapp.online" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Client Portal</a></li>
           </ul>
         </div>
 
-        <!-- Resources -->
+        <!-- Column 5: Organization & Legal -->
         <div class="space-y-4">
-          <h4 class="font-medium text-ink">Company</h4>
-          <ul class="space-y-3 text-ink-light">
-            <li><a href="/blog" class="hover:text-brand-600 transition-colors">Blog</a></li>
-            <li><a href="/contact" class="hover:text-brand-600 transition-colors">Contact Us</a></li>
+          <h4 class="font-bold text-lime text-base">Organization</h4>
+          <ul class="space-y-2.5 text-white/75 text-sm">
+            <li><a href="/about" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">About Us</a></li>
+            <li><a href="/careers" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime inline-flex items-center gap-1.5">
+              <span>Careers</span>
+              <span class="bg-lime text-ink text-[9px] font-extrabold px-1.5 py-0.2 rounded-full">WE'RE HIRING</span>
+            </a></li>
+            <li><a href="/contact" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Contact & Inquiries</a></li>
+            <li><a href="/blog" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Technical Blog</a></li>
+            <li><a href="/privacy" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white hover:underline underline-offset-4 decoration-2 decoration-lime">Terms of Service</a></li>
           </ul>
         </div>
-
       </div>
 
-      <div class="max-w-6xl mx-auto mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between text-xs text-ink-lighter">
-        <p>© 2026 JiApps. All rights reserved.</p>
-        <div class="flex gap-6 mt-4 md:mt-0">
-          <a href="#" class="hover:text-ink transition-colors">Privacy</a>
-          <a href="#" class="hover:text-ink transition-colors">Terms</a>
+      <!-- Bottom Bar -->
+      <div class="max-w-6xl mx-auto px-6 py-6 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <p>&copy; {new Date().getFullYear()} JiApps Organization. All rights reserved. Registered IT & Software Entity.</p>
+        <div class="flex items-center gap-6">
+          <a href="/privacy" class="hover:text-white transition-colors">Privacy</a>
+          <a href="/terms" class="hover:text-white transition-colors">Terms</a>
+          <a href="mailto:hello@jiapp.online" class="hover:text-lime transition-colors">hello@jiapp.online</a>
         </div>
       </div>
     </footer>
 
+    <!-- Mobile Nav Script -->
+    <script>
+      const toggle = document.getElementById('mobile-nav-toggle');
+      const menu = document.getElementById('mobile-nav-menu');
+      const hamburger = document.getElementById('hamburger-icon');
+      const close = document.getElementById('close-icon');
+
+      toggle?.addEventListener('click', () => {
+        const isClosed = menu?.classList.contains('hidden');
+        if (isClosed) {
+          menu?.classList.remove('hidden');
+          hamburger?.classList.add('hidden');
+          close?.classList.remove('hidden');
+        } else {
+          menu?.classList.add('hidden');
+          hamburger?.classList.remove('hidden');
+          close?.classList.add('hidden');
+        }
+      });
+    </script>
   </body>
 </html>

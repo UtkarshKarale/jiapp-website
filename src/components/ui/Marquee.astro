@@ -1,0 +1,9 @@
+---
+interface Props { items: string[]; }
+const { items } = Astro.props;
+---
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {[0, 1].map(() => items.map((item) => <span>{item} <span class="px-2">✦</span></span>))}
+  </div>
+</div>

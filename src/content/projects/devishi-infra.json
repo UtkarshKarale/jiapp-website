@@ -1,0 +1,26 @@
+{
+  "title": "Devishi Projects & Infrastructure",
+  "slug": "devishi-infra",
+  "description": "Enterprise corporate web platform, project portfolio showcase, and client portal engineered for Devishi Infra Projects Limited.",
+  "longDescription": "Devishi Projects Limited (devishipl.com) is an infrastructure, construction, and project development organization. JiApp engineered their flagship corporate web platform, providing an interactive showcase of ongoing and completed infrastructure developments, investor relations documentation, and a secure client inquiry management system. Built with modern Jamstack architecture and deployed on Cloudflare global edge for lightning-fast sub-second response times.",
+  "category": "web",
+  "coverImage": "/images/projects/devishi-cover.svg",
+  "galleryImages": [],
+  "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Cloudflare"],
+  "features": [
+    "High-performance responsive corporate web architecture",
+    "Interactive real estate and infrastructure project showcase",
+    "Investor relations, corporate filings & brochure downloads",
+    "Automated lead capture & inquiry routing engine",
+    "Optimized on Cloudflare edge CDN with 99.9% uptime SLA",
+    "Full SEO optimization and structured JSON-LD metadata"
+  ],
+  "liveUrl": "https://www.devishipl.com/",
+  "status": "live",
+  "featured": true,
+  "createdDate": "2024-05-10",
+  "stats": {
+    "users": "50K+ Visits",
+    "rating": "4.9"
+  }
+}

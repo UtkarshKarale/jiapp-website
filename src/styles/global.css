@@ -1,28 +1,39 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ───────────────────────────────────────────────
+   JiApps · Gen Z theme
+   Lilac paper, ink outlines, hard offset shadows.
+   Old token names are kept so untouched pages still work.
+   ─────────────────────────────────────────────── */
 @theme {
-  --color-background: #fcfbf9;
+  --color-background: #f5f0ff;
   --color-surface: #ffffff;
-  --color-border: #E6E4DD;
-  
-  --color-ink: #1c1b1a;
-  --color-ink-light: #4b4a49;
-  --color-ink-lighter: #8b8a89;
-  
-  --color-brand-50: #f9f6f5;
-  --color-brand-100: #f1e8e5;
-  --color-brand-200: #dfcec8;
-  --color-brand-300: #caa89f;
-  --color-brand-400: #b48174;
-  --color-brand-500: #c05c3c;
-  --color-brand-600: #a3482c;
-  --color-brand-700: #843821;
-  --color-brand-800: #692d1b;
-  --color-brand-900: #552618;
+  --color-border: #ddd3f5;
 
-  --font-display: "Poppins", system-ui, sans-serif;
-  --font-body: "Poppins", system-ui, sans-serif;
+  --color-line: #17112b;          /* the hard outline colour */
+  --color-ink: #17112b;
+  --color-ink-light: #4a4262;
+  --color-ink-lighter: #7a7194;
+
+  --color-brand-50: #f3efff;
+  --color-brand-100: #e6ddff;
+  --color-brand-200: #cdbcff;
+  --color-brand-300: #ae96ff;
+  --color-brand-400: #8d6cff;
+  --color-brand-500: #6c47ff;
+  --color-brand-600: #5530e6;
+  --color-brand-700: #4324b8;
+  --color-brand-800: #331b8c;
+  --color-brand-900: #241260;
+
+  --color-lime: #c6f432;
+  --color-pop: #ff5fa8;
+  --color-sun: #ffd23f;
+  --color-sky: #8fd8ff;
+
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 }
 
 html {
@@ -34,10 +45,167 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--color-background);
+  background-image: radial-gradient(rgb(23 17 43 / 0.09) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
   color: var(--color-ink);
 }
 
+h1, h2, h3, h4 { font-family: var(--font-display); }
+
 ::selection {
-  background-color: var(--color-brand-100);
-  color: var(--color-brand-900);
+  background-color: var(--color-lime);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-pop);
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Buttons — pill, outlined, they "press" into their shadow */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--color-ink);
+    background: #fff;
+    border: 2px solid var(--color-line);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--color-line);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--color-line); }
+  .btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--color-line); }
+  .btn-violet { background: var(--color-brand-500); color: #fff; }
+  .btn-lime { background: var(--color-lime); }
+  .btn-ink { background: var(--color-ink); color: #fff; }
+
+  /* Surfaces */
+  .card {
+    background: #fff;
+    border: 2px solid var(--color-line);
+    border-radius: 1.75rem;
+    box-shadow: 6px 6px 0 var(--color-line);
+  }
+  .tile {
+    border: 2px solid var(--color-line);
+    border-radius: 1.25rem;
+    box-shadow: 4px 4px 0 var(--color-line);
+  }
+  .lift { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .lift:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--color-line); }
+
+  /* Stickers & chips */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    background: var(--color-sun);
+    border: 2px solid var(--color-line);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--color-line);
+    rotate: -2deg;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 2px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-brand-100);
+  }
+  .icon-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    border: 2px solid var(--color-line);
+    border-radius: 0.9rem;
+    background: #fff;
+  }
+
+  /* Headline scale */
+  .h-mega {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.75rem, 9vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+  .h-page {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 7vw, 4.75rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  /* Marquee strip */
+  .marquee {
+    overflow: hidden;
+    background: var(--color-lime);
+    border-block: 2px solid var(--color-line);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 32s linear infinite;
+  }
+  .marquee-track > span {
+    padding: 0.85rem 1.25rem;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+
+  /* Native accordion (FAQ) */
+  .faq { border: 2px solid var(--color-line); border-radius: 1.25rem; background: #fff; box-shadow: 4px 4px 0 var(--color-line); }
+  .faq summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    cursor: pointer; list-style: none; padding: 1.1rem 1.4rem;
+    font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; flex-shrink: 0; width: 2rem; height: 2rem; display: grid; place-items: center;
+    font-size: 1.4rem; line-height: 1; background: var(--color-lime);
+    border: 2px solid var(--color-line); border-radius: 999px; transition: transform 0.2s ease;
+  }
+  .faq[open] summary::after { transform: rotate(45deg); }
+  .faq[open] { background: var(--color-brand-50); }
+  .faq p { padding: 0 1.4rem 1.3rem; color: var(--color-ink-light); line-height: 1.7; max-width: 62ch; }
+
+  /* Form fields */
+  .field {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #fff;
+    border: 2px solid var(--color-line);
+    border-radius: 0.9rem;
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+  }
+  .field:focus { outline: none; box-shadow: 4px 4px 0 var(--color-brand-500); transform: translate(-2px, -2px); }
+}
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track { animation: none; }
+  .btn, .lift, .field { transition: none; }
 }

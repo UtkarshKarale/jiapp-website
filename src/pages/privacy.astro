@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy Policy | JiApps Organization"
+  description="JiApps Privacy Policy: Learn how we protect your personal and business data across our products and IT services."
+>
+  <main id="main" class="flex-grow">
+    <section class="max-w-4xl mx-auto px-6 pt-14 md:pt-20 pb-16">
+      <div class="sticker mb-6 rotate-0">Legal Documentation</div>
+      <h1 class="h-page mb-6">Privacy Policy</h1>
+      <p class="text-ink-light text-base mb-8">
+        Last updated: October 2026 &bull; Effective for JiApps Organization, BillZ POS, and all IT Client Services.
+      </p>
+
+      <div class="card p-8 md:p-12 space-y-8 bg-white text-ink leading-relaxed text-base">
+        <section class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-brand-600">1. Commitment to Data Sovereignty</h2>
+          <p>
+            At JiApps ("we", "our", or "us"), we prioritize data privacy and client sovereignty by design. Whether you are using our offline-first retail products (like BillZ POS) or engaging our IT engineering services for web and software development, your data belongs strictly to you.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-brand-600">2. Products: Offline-First Data Model (BillZ POS)</h2>
+          <p>
+            For users of BillZ POS:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-ink-light">
+            <li><strong>Local Storage:</strong> Your transactional data, catalog, customer contacts, and sales figures are stored locally on your machine in encrypted SQLite databases.</li>
+            <li><strong>Zero Unsolicited Cloud Sync:</strong> We do not harvest, monetize, or sell your customer transaction data or retail sales logs.</li>
+            <li><strong>Optional Cloud Backups:</strong> If you explicitly enable JiApps Accounts backup synchronization, data in transit and at rest is secured via AES-256 encryption.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-brand-600">3. IT Services &amp; Client Project Engagements</h2>
+          <p>
+            For organizations hiring JiApps for custom development, web apps, or dedicated engineers:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-ink-light">
+            <li><strong>Confidentiality &amp; NDA:</strong> All client project requirements, intellectual property, design assets, and database schemas are handled under strict confidentiality agreements.</li>
+            <li><strong>Direct Source Repositories:</strong> Code is committed directly to client-owned repositories (GitHub, GitLab, Bitbucket) without residual third-party storage.</li>
+            <li><strong>Production Credentials:</strong> Production database and cloud access keys are held only for approved deployment phases and wiped according to security protocols upon project handover.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-brand-600">4. Information We Collect via the Website</h2>
+          <p>
+            When you interact with our website (jiapp.online) or submit inquiries:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-ink-light">
+            <li><strong>Inquiry Details:</strong> Name, work email address, company name, phone/WhatsApp number, and project descriptions provided via our "Hire Us" and "Contact" forms.</li>
+            <li><strong>Communication Logs:</strong> Direct correspondence sent to <code>hello@jiapp.online</code>.</li>
+            <li><strong>Technical Analytics:</strong> Anonymized telemetry such as browser type, approximate geography, and page view metrics to optimize performance.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-brand-600">5. Data Sharing and Third Parties</h2>
+          <p>
+            We do not sell, rent, or trade your personal or business data to third-party advertisers or data brokers under any circumstances. We may share data only with authorized infrastructure vendors (such as transactional email delivery or secure payment processors) strictly to fulfill services you have requested.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-2xl font-extrabold text-brand-600">6. Contact Our Privacy Officer</h2>
+          <p>
+            If you have questions regarding this Privacy Policy or wish to request data deletion or review, please contact our data governance team directly at:
+          </p>
+          <div class="p-4 rounded-xl bg-brand-50 border-2 border-line">
+            <p class="font-bold text-ink">JiApps Organization &bull; Legal &amp; Compliance</p>
+            <p class="text-sm text-ink-light mt-1">Email: <a href="mailto:hello@jiapp.online" class="font-mono font-bold text-brand-600 underline">hello@jiapp.online</a></p>
+            <p class="text-sm text-ink-light">Website: <a href="https://jiapp.online" class="underline">https://jiapp.online</a></p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</Layout>

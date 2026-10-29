@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="caremateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff5fa8" />
+      <stop offset="100%" stop-color="#c6f432" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#caremateGrad)" rx="24"/>
+  <circle cx="720" cy="100" r="160" fill="#ffffff" opacity="0.04"/>
+  <circle cx="80" cy="400" r="140" fill="#ffffff" opacity="0.04"/>
+  
+  <!-- Cross Medical Icon Pattern -->
+  <path d="M 620 180 H 660 V 140 H 700 V 180 H 740 V 220 H 700 V 260 H 660 V 220 H 620 Z" fill="#ffffff" opacity="0.08"/>
+  
+  <!-- Badge -->
+  <rect x="70" y="70" width="180" height="36" rx="18" fill="#38bdf8"/>
+  <text x="160" y="93" fill="#0f172a" font-family="system-ui, sans-serif" font-weight="800" font-size="14" text-anchor="middle">MOBILE APPLICATION</text>
+  
+  <!-- Content -->
+  <text x="70" y="170" fill="#ffffff" font-family="system-ui, sans-serif" font-weight="900" font-size="44" letter-spacing="-1">CareMate</text>
+  <text x="70" y="220" fill="url(#pinkGrad)" font-family="system-ui, sans-serif" font-weight="700" font-size="24">Healthcare &amp; Caregiver Mobile App</text>
+  <text x="70" y="270" fill="#e0f2fe" font-family="system-ui, sans-serif" font-weight="400" font-size="18">Patient vitals tracking, caregiver scheduling &amp; tele-consultations</text>
+  
+  <!-- Tags -->
+  <rect x="70" y="340" width="110" height="34" rx="10" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+  <text x="125" y="362" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Mobile iOS/Android</text>
+  
+  <rect x="195" y="340" width="100" height="34" rx="10" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+  <text x="245" y="362" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Flutter / Kotlin</text>
+  
+  <rect x="310" y="340" width="100" height="34" rx="10" fill="#ffffff" opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+  <text x="360" y="362" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Realtime Sync</text>
+  
+  <!-- Subtext -->
+  <text x="70" y="440" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Delivered by JiApp Engineering &rarr;</text>
+</svg>

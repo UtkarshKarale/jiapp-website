@@ -1,88 +1,353 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Marquee from '../components/ui/Marquee.astro';
+
+const ticker = [
+  'Web Development & Portals',
+  'BillZ POS v1.0',
+  'Offline-First Desktop Systems',
+  'Spring Boot & Node.js Backends',
+  'Dedicated Engineering Pods',
+  'Mobile iOS & Android',
+  '100% Source Code Ownership',
+  'hello@jiapp.online',
+];
+
+const itServices = [
+  {
+    title: 'Full-Stack Web Development',
+    tag: 'Web',
+    color: 'bg-brand-500 text-white',
+    desc: 'High-speed web applications, client portals, and responsive SaaS platforms built with Next.js, Astro, React, and TypeScript. Optimized for sub-second load times.',
+    link: '/services#web',
+    action: 'Hire Web Engineers',
+  },
+  {
+    title: 'Offline-First Desktop Systems',
+    tag: 'Desktop',
+    color: 'bg-lime text-ink',
+    desc: 'Specialized desktop software for retail, warehousing, and billing built with Electron, SQLite, and local network synchronization. Zero cloud tax.',
+    link: '/services#custom',
+    action: 'Build Desktop App',
+  },
+  {
+    title: 'Mobile App Engineering',
+    tag: 'Mobile',
+    color: 'bg-sky text-ink',
+    desc: 'Snappy native Android and cross-platform Flutter/React Native mobile applications with offline caching, push notifications, and payment gateway integration.',
+    link: '/services#mobile',
+    action: 'Launch Mobile App',
+  },
+  {
+    title: 'Backend, Cloud & Microservices',
+    tag: 'Cloud',
+    color: 'bg-white text-ink',
+    desc: 'Resilient APIs and scalable distributed architectures built with Spring Boot, Node.js, PostgreSQL, Docker, and automated CI/CD deployment pipelines.',
+    link: '/services#cloud',
+    action: 'Build Scalable APIs',
+  },
+];
 ---
 
-<Layout title="JiApps | Specialized Tools for Business">
-    <!-- Hero Section -->
-    <main class="flex-grow flex flex-col items-center pt-24 pb-32 px-6 relative overflow-hidden">
-      <!-- Background pattern -->
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8b8a891a_1px,transparent_1px),linear-gradient(to_bottom,#8b8a891a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] -z-10"></div>
-      
-      <div class="max-w-5xl mx-auto text-center mt-12 w-full">
-        <!-- Badge -->
-        <a href="/billz" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border text-ink-light text-sm font-medium hover:bg-brand-50 hover:text-brand-600 transition-colors mb-8 shadow-sm">
-          <span class="bg-brand-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">New</span>
-          Meet BillZ POS v1.0
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+<Layout
+  title="JiApps | Specialized Software Products & IT Development Services"
+  description="JiApps represents two strong profiles: building specialized tools like BillZ POS, and providing elite full-stack web, mobile, and custom IT development services."
+>
+  <main id="main" class="flex-grow">
 
-        <h1 class="font-display text-6xl md:text-8xl font-extrabold text-ink leading-[1.1] tracking-tight mb-8">
-          Retail software, <br/>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-400">supercharged.</span>
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-6 pt-14 md:pt-20 pb-16 grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
+      <div>
+        <div class="flex flex-wrap gap-2.5 items-center mb-6">
+          <span class="sticker rotate-0">
+            <span class="bg-ink text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">DUAL PROFILE</span>
+            Software Products &bull; IT Services
+          </span>
+          <a href="/billz" class="chip hover:bg-brand-200 transition-colors">
+            BillZ POS v1.0 Released &rarr;
+          </a>
+        </div>
+
+        <h1 class="h-mega mb-7">
+          Specialized products. Elite IT development services.
         </h1>
-        
-        <p class="text-xl md:text-2xl text-ink-light font-body max-w-2xl mx-auto leading-relaxed mb-10">
-          The ultimate offline-first POS and unified account ecosystem for ambitious Indian retailers. Fast, reliable, and completely cloud-tax free.
+
+        <p class="text-lg md:text-xl text-ink-light max-w-xl leading-relaxed mb-10">
+          We operate across two fronts: engineering offline-first retail software for Indian merchants, and partnering with companies worldwide to build high-performance web, mobile, and custom software systems.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="/billz" class="w-full sm:w-auto bg-ink hover:bg-ink-light text-white font-medium px-8 py-4 rounded-xl transition-all shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
-            Get Started
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/hire-us" class="btn btn-lime">
+            <span>Hire Us for Projects</span>
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
           </a>
-          <a href="https://accounts.jiapp.online" class="w-full sm:w-auto bg-surface border border-border hover:border-brand-300 text-ink font-medium px-8 py-4 rounded-xl transition-all hover:text-brand-600 shadow-sm flex items-center justify-center gap-2">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-            Sign In to Accounts
+          <a href="/services" class="btn btn-violet">
+            <span>Explore IT Services</span>
+          </a>
+          <a href="/billz" class="btn bg-white">
+            <span>BillZ POS</span>
           </a>
         </div>
       </div>
 
-      <!-- Products Grid -->
-      <div id="products" class="max-w-5xl mx-auto w-full mt-32 grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
-        
-        <!-- BillZ Card -->
-        <a href="/billz" class="group block border border-border bg-surface p-10 rounded-2xl hover:border-brand-300 hover:shadow-xl hover:shadow-brand-50/50 transition-all duration-300 relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="mb-6">
-            <img src="/logo-billz.svg" alt="BillZ Logo" class="w-14 h-14 shadow-sm rounded-xl group-hover:scale-105 transition-transform" />
-          </div>
-          <h2 class="font-display text-2xl font-medium text-ink mb-3 group-hover:text-brand-600 transition-colors">BillZ POS</h2>
-          <p class="text-ink-light leading-relaxed mb-8">
-            Our flagship offline-first point of sale system. Built for speed with robust hardware support, clothing variants, and instant WhatsApp receipts. Zero cloud tax for multi-counter LAN setups.
-          </p>
-          <div class="flex items-center text-sm font-medium text-brand-600">
-            Explore BillZ
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-        </a>
+      <!-- Hero Visual: Dual Card Interaction -->
+      <div class="relative mx-auto w-full max-w-sm lg:max-w-none lg:pl-6 space-y-6">
 
-        <!-- Accounts Card -->
-        <a href="/accounts" class="group block border border-border bg-surface p-10 rounded-2xl hover:border-brand-300 hover:shadow-xl hover:shadow-brand-50/50 transition-all duration-300 relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="mb-6">
-            <img src="/logo-accounts.svg" alt="Accounts Logo" class="w-14 h-14 shadow-sm rounded-xl group-hover:scale-105 transition-transform" />
+        <!-- Top Profile Card: IT Agency Badge -->
+        <div class="card p-6 !bg-brand-500 text-white rotate-2 hover:rotate-0 transition-transform">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono font-bold uppercase tracking-wider bg-lime text-ink px-2.5 py-0.5 rounded-full">
+              Profile 01: IT Services
+            </span>
+            <span class="text-xs text-white/80">Agency &bull; Dev Pods</span>
           </div>
-          <h2 class="font-display text-2xl font-medium text-ink mb-3 group-hover:text-brand-600 transition-colors">JiApps Accounts</h2>
-          <p class="text-ink-light leading-relaxed mb-8">
-            The central hub for your business identity. Manage your subscriptions, sync devices, track onboarding, and securely authenticate across the JiApps ecosystem.
+          <h3 class="text-xl font-extrabold mb-2">Custom Software Engineering</h3>
+          <p class="text-sm text-white/85 leading-relaxed mb-4">
+            Full-stack web applications, Spring Boot microservices, and mobile apps with 100% IP handover.
           </p>
-          <div class="flex items-center text-sm font-medium text-brand-600">
-            Sign in to Accounts
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+          <div class="flex items-center justify-between text-xs font-mono pt-3 border-t border-white/20">
+            <span class="text-lime font-bold">Contact: hello@jiapp.online</span>
+            <a href="/hire-us" class="underline hover:text-lime">Hire Team &rarr;</a>
           </div>
-        </a>
+        </div>
+
+        <!-- Bottom Profile Card: BillZ POS -->
+        <div class="card p-6 font-mono text-sm -rotate-2 hover:rotate-0 transition-transform bg-white relative">
+          <div class="absolute -top-3.5 -right-2 z-10 sticker !bg-lime rotate-6 text-xs">
+            Profile 02: Products
+          </div>
+          <div class="flex items-center gap-3 pb-3 border-b-2 border-dashed border-line">
+            <img src="/logo-billz.svg" alt="" class="w-9 h-9 rounded-lg" />
+            <div>
+              <p class="font-display font-extrabold text-base leading-none">BillZ POS</p>
+              <p class="text-[11px] text-ink-lighter mt-1">Retail Software &bull; Offline First</p>
+            </div>
+          </div>
+          <div class="py-3 text-xs space-y-1.5 border-b-2 border-dashed border-line text-ink-light">
+            <div class="flex justify-between"><span>Offline Architecture</span><span class="font-bold text-ink">Zero Cloud Tax</span></div>
+            <div class="flex justify-between"><span>Thermal &amp; Barcode</span><span class="font-bold text-ink">Plug &amp; Play</span></div>
+          </div>
+          <div class="mt-3 tile !shadow-[2px_2px_0_var(--color-line)] !rounded-xl bg-lime px-3 py-2 text-xs font-bold flex items-center justify-between font-body">
+            <span>Try 7 Days Free</span>
+            <a href="/billz" class="underline">View Product &rarr;</a>
+          </div>
+        </div>
 
       </div>
-    </main>
+    </section>
+
+    <!-- Marquee Banner -->
+    <Marquee items={ticker} />
+
+    <!-- SECTION 1: JiApp as Services (Web & IT Development) -->
+    <section id="services" class="max-w-6xl mx-auto px-6 pt-24 pb-12 scroll-mt-20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-brand-600 bg-brand-100 px-3 py-1 rounded-full border border-line">
+            JiApp as Services
+          </span>
+          <h2 class="h-page mt-3">Full-Cycle IT &amp; Web Development</h2>
+        </div>
+        <div class="max-w-md">
+          <p class="text-ink-light text-base leading-relaxed mb-3">
+            Need an experienced team to design, engineer, and deploy your product? We provide dedicated developers and fixed-scope delivery for high-impact projects.
+          </p>
+          <a href="/hire-us" class="btn btn-lime !text-sm !py-2 !px-4">
+            <span>Hire Us via hello@jiapp.online</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- IT Services Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {itServices.map((service) => (
+          <div class={`card p-6 flex flex-col justify-between hover:-translate-y-1 transition-transform ${service.color}`}>
+            <div>
+              <span class="text-[11px] font-mono font-bold uppercase tracking-wider opacity-75 mb-3 block">
+                {service.tag}
+              </span>
+              <h3 class="text-xl font-extrabold mb-3 leading-snug">{service.title}</h3>
+              <p class="text-sm leading-relaxed opacity-85 mb-6">{service.desc}</p>
+            </div>
+            <div>
+              <a
+                href={service.link}
+                class="btn !bg-white !text-ink !text-xs w-full justify-center !shadow-[2px_2px_0_var(--color-line)] hover:!bg-lime"
+              >
+                <span>{service.action}</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Featured Past Client Deliveries -->
+      <div class="mt-12 pt-8 border-t-2 border-line">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="sticker !bg-lime text-ink rotate-0 text-xs">Client Proof</span>
+            <h3 class="text-2xl font-extrabold mt-1">Featured Client Work</h3>
+          </div>
+          <a href="/services" class="text-sm font-bold text-brand-600 hover:underline">View All Services &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card p-6 !bg-white flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-600 bg-brand-100 px-2.5 py-0.5 rounded-full border border-line">
+                  Web Platform &bull; Corporate Infra
+                </span>
+                <span class="text-xs font-bold text-ink-light">Client</span>
+              </div>
+              <h4 class="text-xl font-extrabold mb-2">Devishi Projects &amp; Infrastructure</h4>
+              <p class="text-ink-light text-sm leading-relaxed mb-4">
+                Enterprise corporate web platform, project portfolio showcase, and investor relations portal for Devishi Projects Limited. Deployed on Cloudflare global edge.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-line/10">
+              <span class="text-xs font-mono font-bold">Next.js &bull; Cloudflare</span>
+              <a href="https://www.devishipl.com/" target="_blank" rel="noopener noreferrer" class="btn btn-lime !text-xs !py-1 !px-3">
+                Visit devishipl.com &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="card p-6 !bg-sky flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-ink bg-white px-2.5 py-0.5 rounded-full border border-line">
+                  Mobile App &bull; Healthcare
+                </span>
+                <span class="text-xs font-bold text-ink-light">iOS &amp; Android</span>
+              </div>
+              <h4 class="text-xl font-extrabold mb-2">CareMate Mobile App</h4>
+              <p class="text-ink/80 text-sm leading-relaxed mb-4">
+                Patient vitals monitoring, caregiver task scheduling, medication reminders, emergency SOS location broadcasting, and encrypted tele-consultations.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-line/10">
+              <span class="text-xs font-mono font-bold">Flutter &bull; Firebase</span>
+              <a href="/hire-us?service=mobile" class="btn btn-ink !text-xs !py-1 !px-3 text-white">
+                Inquire Mobile App &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Hire Banner -->
+      <div class="mt-8 card p-8 !bg-ink text-white flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-2xl font-extrabold text-lime mb-2">Have a project in mind?</h3>
+          <p class="text-white/80 text-sm max-w-xl">
+            We sign strict NDAs, deliver bi-weekly production sprints, and transfer 100% intellectual property to your company.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a href="/hire-us" class="btn btn-lime !py-2.5 !px-6 !text-sm text-ink">
+            Start Project Inquiry &rarr;
+          </a>
+          <a href="mailto:hello@jiapp.online" class="btn !bg-white/10 text-white border-white/20 hover:bg-white/20 !py-2.5 !px-5 !text-sm font-mono">
+            hello@jiapp.online
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: JiApp Products (BillZ POS & Accounts) -->
+    <section id="products" class="max-w-6xl mx-auto px-6 pt-20 pb-16 scroll-mt-20">
+      <div class="mb-12">
+        <span class="text-xs uppercase font-extrabold tracking-wider text-brand-600 bg-brand-100 px-3 py-1 rounded-full border border-line">
+          JiApp Products
+        </span>
+        <h2 class="h-page mt-3">Specialized Retail Software</h2>
+        <p class="text-ink-light text-base max-w-2xl mt-2 leading-relaxed">
+          Engineered for high throughput, local data sovereignty, and reliable performance in real retail environments.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- BillZ POS Card -->
+        <a href="/billz" class="card lift group block p-8 md:p-10 !bg-brand-500 text-white">
+          <div class="flex items-center justify-between mb-8">
+            <img src="/logo-billz.svg" alt="BillZ Logo" class="w-16 h-16 rounded-2xl border-2 border-line bg-white group-hover:-rotate-6 transition-transform" />
+            <span class="sticker !bg-lime text-ink rotate-3 text-xs">OFFLINE-FIRST POS</span>
+          </div>
+          <h3 class="text-3xl font-extrabold mb-3">BillZ POS</h3>
+          <p class="text-white/85 leading-relaxed mb-8">
+            Our flagship offline-first point of sale system for clothing stores, retail marts, and billing counters. Built with thermal printing, WhatsApp receipt delivery, barcode scanning, and multi-counter LAN synchronization.
+          </p>
+          <span class="btn btn-lime !shadow-[3px_3px_0_var(--color-line)]">Explore BillZ &rarr;</span>
+        </a>
+
+        <!-- JiApps Accounts Card -->
+        <a href="/accounts" class="card lift group block p-8 md:p-10 !bg-lime">
+          <div class="flex items-center justify-between mb-8">
+            <img src="/logo-accounts.svg" alt="Accounts Logo" class="w-16 h-16 rounded-2xl border-2 border-line bg-white group-hover:rotate-6 transition-transform" />
+            <span class="sticker !bg-sun text-ink -rotate-3 text-xs">UNIFIED ACCOUNTS</span>
+          </div>
+          <h3 class="text-3xl font-extrabold mb-3">JiApps Accounts</h3>
+          <p class="text-ink/80 leading-relaxed mb-8">
+            The central hub for your business identity. Manage retail licenses, sync multi-counter hardware devices, track cloud backups, and securely authenticate across the entire JiApps software suite.
+          </p>
+          <span class="btn !shadow-[3px_3px_0_var(--color-line)] bg-white">Sign in to Accounts &rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Organization Assurance Grid -->
+    <section class="max-w-6xl mx-auto px-6 py-12">
+      <div class="card p-8 md:p-12 !bg-white">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-8 text-center">
+          The JiApps Organization Standard
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div class="text-center space-y-2">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-lime flex items-center justify-center border-2 border-line font-black text-xl">
+              ⚡
+            </div>
+            <h4 class="font-extrabold text-lg">Sub-Second Execution</h4>
+            <p class="text-sm text-ink-light">We engineer applications that run at native machine speed, eliminating bloat and latency.</p>
+          </div>
+          <div class="text-center space-y-2">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-sky flex items-center justify-center border-2 border-line font-black text-xl">
+              🛡️
+            </div>
+            <h4 class="font-extrabold text-lg">100% Data Sovereignty</h4>
+            <p class="text-sm text-ink-light">Your business data stays in your control. No forced telemetry, cloud lock-in, or hidden monetization.</p>
+          </div>
+          <div class="text-center space-y-2">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-sun flex items-center justify-center border-2 border-line font-black text-xl">
+              🤝
+            </div>
+            <h4 class="font-extrabold text-lg">Direct Engineering Lead</h4>
+            <p class="text-sm text-ink-light">Every client and user interacts directly with software architects at hello@jiapp.online.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Callout -->
+    <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+      <div class="max-w-2xl mx-auto">
+        <span class="sticker !bg-pop/40 text-ink mb-4 inline-block">Partner With JiApp</span>
+        <h2 class="h-page mt-2 mb-6">Ready to bring your ideas to life?</h2>
+        <p class="text-ink-light text-lg mb-8 leading-relaxed">
+          From retail tools that keep checkout counters running to custom web &amp; mobile solutions, let's build something lasting together.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/hire-us" class="btn btn-lime !text-base !py-3 !px-8">
+            Hire Our Team &rarr;
+          </a>
+          <a href="/contact" class="btn !text-base !py-3 !px-8">
+            Contact Organization
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 </Layout>

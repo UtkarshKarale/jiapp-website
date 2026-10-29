@@ -83,14 +83,14 @@ export function estimateReadingTime(content: string): number {
 }
 
 export const SITE_CONFIG = {
-  name: 'JI App',
-  tagline: 'Building Software, AI Tools & Digital Products',
+  name: 'JiApp',
+  tagline: 'Specialized Software Products & Professional IT Development Services',
   description:
-    'JI App is the central hub for all software products, websites, mobile apps, desktop applications, browser extensions, and technical blogs created by JI.',
+    'JiApp builds specialized software products like BillZ POS and delivers end-to-end IT, web development, custom applications, and cloud engineering services for businesses worldwide.',
   url: 'https://jiapp.online',
-  author: 'JI',
-  email: 'utkarsh@jiapp.online',
-  linkedin: 'https://linkedin.com/in/jiapp',
+  author: 'JiApp',
+  email: 'hello@jiapp.online',
+  linkedin: 'https://linkedin.com/company/jiapp',
   youtube: 'https://youtube.com/@jiapp',
   twitter: 'https://twitter.com/jiapp',
 };
