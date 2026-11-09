@@ -207,6 +207,16 @@ function Page({ l, d }) {
   );
 }
 
+/* ───────── Form Input Field ───────── */
+function FormInput({ label, value, type = "text", ph, onChange }) {
+  return (
+    <label className="f">
+      <span>{label}</span>
+      <input type={type} value={value ?? ""} placeholder={ph} onChange={onChange} />
+    </label>
+  );
+}
+
 /* ───────── Tool ───────── */
 export default function ProposalMaker() {
   const [d, setD] = useState(INIT);
@@ -235,10 +245,6 @@ export default function ProposalMaker() {
   };
   const reset = () => { if (confirm("Reset all fields?")) setD(INIT); };
 
-  const F = ({ label, k, type = "text", ph }) => (
-    <label className="f"><span>{label}</span><input type={type} value={d[k]} placeholder={ph} onChange={set(k)} /></label>
-  );
-
   return (
     <div className="pm-app">
       <style>{CSS}</style>
@@ -255,14 +261,23 @@ export default function ProposalMaker() {
         </div>
 
         <fieldset><legend>Client</legend>
-          <F label="Client name" k="clientName" ph="e.g. Rahul Patil" />
-          <F label="Business / company" k="company" ph="e.g. Patil Traders" />
-          <div className="row"><F label="Phone" k="clientPhone" /><F label="Email" k="clientEmail" type="email" /></div>
+          <FormInput label="Client name" value={d.clientName} ph="e.g. Rahul Patil" onChange={set("clientName")} />
+          <FormInput label="Business / company" value={d.company} ph="e.g. Patil Traders" onChange={set("company")} />
+          <div className="row">
+            <FormInput label="Phone" value={d.clientPhone} onChange={set("clientPhone")} />
+            <FormInput label="Email" value={d.clientEmail} type="email" onChange={set("clientEmail")} />
+          </div>
         </fieldset>
 
         <fieldset><legend>Proposal</legend>
-          <div className="row"><F label="Proposal no." k="no" /><F label="Date" k="date" type="date" /></div>
-          <div className="row"><F label="Delivery (days)" k="days" /><F label="Valid for (days)" k="valid" /></div>
+          <div className="row">
+            <FormInput label="Proposal no." value={d.no} onChange={set("no")} />
+            <FormInput label="Date" value={d.date} type="date" onChange={set("date")} />
+          </div>
+          <div className="row">
+            <FormInput label="Delivery (days)" value={d.days} onChange={set("days")} />
+            <FormInput label="Valid for (days)" value={d.valid} onChange={set("valid")} />
+          </div>
         </fieldset>
 
         <fieldset><legend>Plans to include</legend>
@@ -291,13 +306,19 @@ export default function ProposalMaker() {
 
         <fieldset><legend>Next-year maintenance</legend>
           <label className="chk"><input type="checkbox" checked={d.showMaint} onChange={(e) => setD((x) => ({ ...x, showMaint: e.target.checked }))} />Show maintenance card</label>
-          <F label="Yearly fee, ₹ (optional, leave empty to discuss in meeting)" k="maint" type="number" />
+          <FormInput label="Yearly fee, ₹ (optional, leave empty to discuss in meeting)" value={d.maint} type="number" onChange={set("maint")} />
         </fieldset>
 
         <fieldset><legend>Your details</legend>
-          <div className="row"><F label="Representative" k="repName" /><F label="Phone / WhatsApp" k="repPhone" /></div>
-          <div className="row"><F label="Email" k="repEmail" /><F label="Website" k="site" /></div>
-          <F label="Location" k="city" />
+          <div className="row">
+            <FormInput label="Representative" value={d.repName} onChange={set("repName")} />
+            <FormInput label="Phone / WhatsApp" value={d.repPhone} onChange={set("repPhone")} />
+          </div>
+          <div className="row">
+            <FormInput label="Email" value={d.repEmail} onChange={set("repEmail")} />
+            <FormInput label="Website" value={d.site} onChange={set("site")} />
+          </div>
+          <FormInput label="Location" value={d.city} onChange={set("city")} />
           <label className="f"><span>Extra note (optional)</span><textarea rows={2} value={d.notes} onChange={set("notes")} placeholder="e.g. 10% festival discount on Growth plan" /></label>
         </fieldset>
 
